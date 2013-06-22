@@ -194,7 +194,6 @@ npm-debug.log
 node_modules
 
 
-.openshift
 lib-cov
 *.seed
 *.log

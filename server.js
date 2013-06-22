@@ -68,7 +68,21 @@ httpApp.configure(function() {
     }
 });
 
-createRoutes = function() {
+var setIPandPort = function () {
+    //  Set the environment variables we need.
+    easyrtcCfg.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
+    easyrtcCfg.port = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
+
+    if (typeof  easyrtcCfg.ipaddress === "undefined") {
+        //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
+        //  allows us to run/test the app locally.
+        console.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
+         easyrtcCfg.ipaddress = "127.0.0.1";
+    };
+};
+setIPandPort();
+
+var createRoutes = function() {
         routes = { };
 
         // Routes for /health, /asciimo and /
@@ -138,8 +152,12 @@ if (easyrtcCfg.sslEnable) {  // Start SSL Server (https://)
         forwardingServer.listen(easyrtcCfg.httpPort);
     }    
 } else {    // Start HTTP server (http://)
-    var server = http.createServer(httpApp).listen(easyrtcCfg.httpPort);
-    logServer.info('HTTP Server started on port: ' + easyrtcCfg.httpPort, { label: 'easyrtcServer'});
+
+    var server = http.createServer(httpApp).listen(easyrtcCfg.port, easyrtcCfg.ipaddress, function() {
+            console.log('%s: Node server started on %s:%d ...',
+                        Date(Date.now() ), easyrtcCfg.ipaddress, easyrtcCfg.port);
+        });
+    logServer.info('HTTP Server started on port: ' + easyrtcCfg.port, { label: 'easyrtcServer'});
 }
 
 

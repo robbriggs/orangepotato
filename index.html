@@ -1,451 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" ng-app>
+	<head>
+		<title>ChatSafe</title>
+		<meta name="viewport" content="width=350, user-scalable=no" />
+		<!--<link href="bootstrap-combined.min.css" rel="stylesheet">-->
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<style>
+			body {
+				min-width: 300px;
+			}
+			.container {
+				max-width: 470px;
+				text-align: center;
+			}
+			.logo {
+				width: 342px;
+				height: 251px;
+				margin-bottom: 30px;
+			}
+			.hero-unit {
+				padding-bottom: 45px;
+			}
+			@media screen and (max-width: 500px) {
+				.logo {
+					height: auto;
+				}
+			}
+			@media screen and (max-width: 450px) {
+				.hero-unit {
+					padding-left: 30px;
+					padding-right: 30px;
+				}
+			}
+			.input-append input {
+				font-size: 16px;
+			}
+			alert {
+				text-align: left;
+			}
+		</style>
+		<script>
+			function generateKey () {
+				var key = '';
+				for (var i = 0; i < 64; i += 1) {
+					var code = 55 + Math.floor(Math.random()*36);
+					if (code < 65) code -= 7;
+					key += String.fromCharCode(code);
+				}
+				return key;
+			};
 
-
-
-
-
-<!-- VladCode at line 93 or so -->
-
-
-
-
-
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" style="height:100%;">
-  <head>
-    
-      <link rel="canonical" href="http://www.slideshare.net/ssuser63877e/worldwide-collection-130604" />
-    
-
-    
-    <!-- SL:begin:notranslate -->
-    <title>Worldwide Collection 130604</title>
-    <!-- SL:end:notranslate -->
-    
-    <!--[if IE]><style>.slidesContainer img { border: none } </style><![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    
-    
-      <script type="text/javascript">
-        var _jspl = {}
-        _jspl.pageInitTime = (new Date()).getTime();
-        window._gaq = [];
-        _gaq.push(['_setAccount','UA-2330466-1']);
-        _gaq.push(['_setDomainName', '.slideshare.net']);
-        _gaq.push(['_addIgnoredRef', 'slideshare.net']);
-        _gaq.push(['_setCustomVar', 2, 'document_referrer', document.referrer]);
-        _gaq.push(['_trackPageview', '/embedPlayerView']);
-        (function(){
-          // google analytics
-          var ga = document.createElement('script'); 
-          ga.type = 'text/javascript'; 
-          ga.async = true;
-          ga.src = ('https:' == document.location.protocol ?
-            'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(ga, s);
-          
-          //comscore
-          _comscore = window._comscore || [];
-          _comscore.push({ c1: "7", c2: "6402952", c3: "1" });
-          var ca = document.createElement("script");
-          ca.type = 'text/javascript';
-          s = document.getElementsByTagName("script")[0]; 
-          ca.async = true;
-          ca.src = (document.location.protocol == "https:" ?
-            "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
-          s.parentNode.insertBefore(ca, s); 
-          
-        })();
-      </script>
-    
-    <link href="http://public.slidesharecdn.com/stylesheets/ssplayer/combined_presentation.css?1ecc58416d" media="screen" rel="stylesheet" type="text/css" />
-
-    
-    <script>          var _sstq=[];
-          (function(){
-            var a,b;
-            b=document.createElement("script");
-            b.type="text/javascript";
-            b.async=true;
-            b.src="//public.slidesharecdn.com/javascripts/instrumentation_wrapper.js";
-            a=document.getElementsByTagName("script")[0];
-            a.parentNode.insertBefore(b,a)
-          })();
-_sstq.push(['init_experiment', {"disabled":true,"experiment_name":"embed_cta","bucket":"out"}]);</script>
-    
-
-  <script src="http://public.slidesharecdn.com/javascripts/ssplayer/combined_presentation.js?4c06583f00" type="text/javascript"></script>
-
-
-    
-    <script type="text/javascript">
-      config = {"slideshow_real_total_slides_count":70,"replayscreen":{"html":"\u003Ca href=\"#\" class=\"replayScreenReplay\" \u003EView again\u003C/a\u003E"},"is_only_private":false,"player_bgcolor":"jsplBgColorCCC","is_ssl":false,"stripped_title":"worldwide-collection-130604","image_bucket_location":"//image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02","slideview_url":"/ssuser63877e/worldwide-collection-130604?ref=","show_image_player":true,"start_slide":1,"image_ready":true,"spinner_url":"//public.slidesharecdn.com/images/ssplayer/loading.gif","disable_share":false,"container":"player","ppt_location":"worldwidecollection130604-130621032700-phpapp02","html_ttffont_url_suffix":".js","lastscreen":{"related":[{"views":173,"title":"2012 worldwide collection agencies ...","url":"/Rose088/2012-worldwide-collection-agencies-industry-industry-market-report","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/2012worldwidecollectionagenciesindustry-industrymarketreport-120901001034-phpapp01-thumbnail-2.jpg?1346476270","author_login":"Rose088","author":"Rose088"},{"views":2345,"title":"Challenges Of Global Data Collectio...","url":"/ResearchShare/challenges-of-global-data-collection-sis-international","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/challengesofglobaldatacollection-sisinternational-100318151048-phpapp02-thumbnail-2.jpg?1269011557","author_login":"ResearchShare","author":"ResearchShare"},{"views":94,"title":"Designer Collection in Chandigarh M...","url":"/shop2fashion/designer-collection-in-chandigarh-mohali-panchkula-delhi-punjab","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/designercollection1-120816055053-phpapp02-thumbnail-2.jpg?1345114310","author_login":"shop2fashion","author":"shop2fashion"},{"views":54,"title":"Worldwide local domination - get th...","url":"/micronichefinder/worldwide-local-domination-get-the-best-review-and-bonus-here","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/worldwidelocaldominationreview-130517120719-phpapp01-thumbnail-2.jpg?1368810751","author_login":"micronichefinder","author":"micronichefinder"},{"views":475,"title":"How To Get Adobe Creative Suite 6 M...","url":"/genisel/how-to-get-fireworks-cs6-for-free-serial-number-keygen-crack-windows-8-16701309","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/adobemastercollectioncs6keygengenerator-130222115548-phpapp01-thumbnail-2.jpg?1361555964","author_login":"genisel","author":"KeygenCrack"},{"views":1350,"title":"Semiconductor industry market analy...","url":"/renubresearch/semiconductor-industry-market-analysis-future-trends-worldwide-2010-2013-10815979","thumbnail":"//cdn.slidesharecdn.com/ss_thumbnails/semiconductorindustrymarketanalysisfuturetrendsworldwide20102013-120105051650-phpapp02-thumbnail-2.jpg?1325762434","author_login":"renubresearch","author":"Renub Research"}],"url":"http://www.slideshare.net/ssuser63877e/worldwide-collection-130604","html":"\u003C!--[if IE 7]\u003E\n  \u003Cstyle\u003E\n    .small.lastScreen{\n      margin-top:23%;\n    }\n    .normal.lastScreen{\n      margin-top:8%;\n    }\n    .lastScreen{\n      margin-top:13%;\n    }\n  \u003C/style\u003E\n\u003C![endif]--\u003E\n\n\u003Cdiv class=\"lastScreen\"\u003E\n  \u003Cdiv class=\"pro-overlay\"\u003E\n\t\u003Cspan class=\"close-btn\"\u003E\u003Ca href=\"#\"\u003E\u0026times;\u003C/a\u003E\u003C/span\u003E\n    \u003Cdiv class=\"proSharingText\"\u003ELike this presentation? Why not share!\u003C/div\u003E\n    \n    \u003Cul class=\"lastActions\"\u003E\n      \u003Cli class=\"email\"\u003E\u003Ca href=\"#\" class=\"lastScreen-sprite lastScreenEmailShare j-tooltip\" data-original-title=\"Email this to your contacts\" title=\"Email this to your contacts\" \u003Eemail\u003C/a\u003E\u003C/li\u003E\n      \u003Cli class=\"embed\"\u003E\u003Clabel \u003Eembed\u003C/label\u003E\u003Cinput type='text' class=\"lastScreenEmbedCode j-tooltip\" data-original-title=\"Embed this on your website or blog\" title=\"Embed this on your website or blog\" /\u003E\u003C/li\u003E\n      \u003Cli class=\"url\"\u003E\u003Clabel \u003Eurl\u003C/label\u003E\u003Cinput type='text' class=\"lastScreenSSUrl j-tooltip\" data-original-title=\"View on Slideshare\" title=\"View on Slideshare\" /\u003E\u003C/li\u003E\n      \u003Cli class=\"replay last\"\u003E\u003Ca href=\"#\" class=\"lastScreen-sprite lastScreenReplay j-tooltip\" data-original-title=\"View again\" title=\"View again\" \u003E\u0026nbsp;\u003C/a\u003E\u003C/li\u003E\n    \u003C/ul\u003E\n    \u003Cdiv class=\"relatedPresentation\"\u003E\n      \u003Ca href=\"#\" class=\"close\"\u003E\u0026times;\u003C/a\u003E\n      \u003Cul\u003E\n        \u003Cli class='relatedContent'\u003E\n          \u003Ca class=\"relatedThumb\" href=\"#\"\u003E\u003Cimg src=\"//public.slidesharecdn.com/images/thumbnail.png\"\u003E\u003C/a\u003E\n          \u003Cdiv class=\"presentationMeta\"\u003E\n            \u003Ca href=\"#\" class=\"relatedTitle\"\u003Etitle comes here\u003C/a\u003E\n            \u003Cp\u003EFrom: \u003Ca class=\"relatedAuthor\" href=\"#\"\u003EName comes here\u003C/a\u003E\u003C/p\u003E\n            \u003Cp\u003EViews: \u003Cspan class=\"relatedViews\"\u003EViews comes here\u003C/span\u003E\u003C/p\u003E\n          \u003C/div\u003E\n        \u003C/li\u003E\n\n        \u003Cli class='relatedContent'\u003E\n          \u003Ca class=\"relatedThumb\" href=\"#\"\u003E\u003Cimg src=\"//public.slidesharecdn.com/images/thumbnail.png\"\u003E\u003C/a\u003E\n          \u003Cdiv class=\"presentationMeta\"\u003E\n            \u003Ca href=\"#\" class=\"relatedTitle\"\u003Etitle comes here\u003C/a\u003E\n            \u003Cp\u003EFrom: \u003Ca class=\"relatedAuthor\" href=\"#\"\u003EName comes here\u003C/a\u003E\u003C/p\u003E\n            \u003Cp\u003EViews: \u003Cspan class=\"relatedViews\"\u003EViews comes here\u003C/span\u003E\u003C/p\u003E\n          \u003C/div\u003E\n        \u003C/li\u003E\n      \u003C/ul\u003E\n      \u003Cdiv class=\"relatedNav\"\u003E\n        \u003Ca href=\"#\" class=\"lastScreen-sprite lastScreenNext\"\u003E\u0026nbsp;\u003C/a\u003E\n        \u003Ca href=\"#\" class=\"lastScreen-sprite lastScreenPrev\"\u003E\u0026nbsp;\u003C/a\u003E\n      \u003C/div\u003E\n    \u003C/div\u003E\n    \n  \u003C/div\u003E \u003C!-- end of div class pro-overlay --\u003E\n\u003C/div\u003E\u003C!-- last screen ends here --\u003E\n"},"has_audio":false,"spinner_url_fullscreen":"//public.slidesharecdn.com/images/ssplayer/loading_white.gif","slide_error_template":"\u003Cstyle type=\"text/css\"\u003E\n  .jsplayer-slide-error {\n    background-color: #000;\n    padding: 20% 0 13% !important;\n  }\n  .jsplayer-slide-error div {\n    text-align: center;\n  }\n  .jsplayer-slide-error img {\n    height: 79px !important;\n    margin: 0 0 10px;\n    width: 80px !important;\n  }\n  .jsplayer-slide-error .slide-error-body {\n    color: #eee;\n    font-family: 'Lucida Grande',Verdana, Arial, Helvetica, sans-serif;\n    padding: 0 !important;\n  }\n  .jsplayer-slide-error .slide-error-body p {\n    font-size: 0.8em;\n    line-height: 1.1em;\n    margin: 7px 0 11px;\n  }\n  .jsplayer-slide-error .slide-error-body input[type=button] {\n    margin: 7px 0 0;\n    padding: 7px 14px;\n  }\n\u003C/style\u003E\n\u003Cdiv class=\"jsplayer-slide-error\"\u003E\n  \u003Cdiv style=\"position:relative;\"\u003E\n    \u003Cimg src='//public.slidesharecdn.com/images/ssplayer/error_dudes-80x79.png' height=\"79\" width=\"80\" /\u003E\n    \u003Cdiv class=\"slide-error-body\"\u003E\n      \u003Cp\u003EWe were unable to load the slide.\u003C/p\u003E\n      \u003Cinput class=\"btn btn-large\" type=\"button\" value=\"Reload slide\" /\u003E\n    \u003C/div\u003E\n  \u003C/div\u003E\n\u003C/div\u003E\n","html_eotfont_url_suffix":"-eot.js","sharescreen":{"title":"Worldwide Collection 130604","url":"http://www.slideshare.net/ssuser63877e/worldwide-collection-130604","html":"\u003Cdiv class=\"shareScreen\"\u003E\n  \u003Ca href=\"#\" class=\"close\"\u003E\u0026times;\u003C/a\u003E\n  \u003Cul class=\"shareMethods\"\u003E\n    \u003Cli class=\"embed\"\u003E\n      \u003Clabel for=\"embed-code\"\u003EEmbed\u003C/label\u003E\n      \u003Cinput type='text' class=\"shareScreenEmbedCode\" value=\"code\" name=\"embed-code\" /\u003E\n    \u003C/li\u003E\n    \u003Cli class=\"url last\"\u003E\n      \u003Clabel for=\"embed-url\"\u003EURL\u003C/label\u003E\n      \u003Cinput type='text' class=\"shareScreenSSUrl\" value=\"code\" name=\"embed-url\" /\u003E\n\t\u003C/li\u003E\n  \u003C/ul\u003E\n  \u003Cform class=\"emailShare\"\u003E\n    \u003Cfieldset\u003E\n      \u003Clegend\u003EEmail this\u003C/legend\u003E\n      \u003Cinput type=\"hidden\" class=\"shareDefaultMessage\" value=\"I think you will find this useful.\" /\u003E\n      \u003Cul\u003E\n        \u003Cli\u003E\n          \u003Clabel for=\"name\"\u003EYour name\u003C/label\u003E\n          \u003Cinput class='shareScreenFromName' type=\"text\" value=\"\" /\u003E\n        \u003C/li\u003E\n        \u003Cli\u003E\n          \u003Clabel for=\"mailID\"\u003EEmail to\u003C/label\u003E\n          \u003Cinput class=\"shareScreenMailID\" type=\"text\" value=\"\" /\u003E\n        \u003C/li\u003E\n        \u003Cli class=\"submit\"\u003E\n          \u003Clabel\u003E\u0026nbsp;\u003C/label\u003E\n          \u003Cinput class=\"shareSprite\" type=\"submit\" value=\"\" /\u003E\n        \u003C/li\u003E        \n      \u003C/ul\u003E\n      \u003C/fieldset\u003E\n  \u003C/form\u003E\n\u003C/div\u003E\u003C!-- shareScreen ends here --\u003E","user_name":"","slideshow_id":23274403},"bucket_location":"//html.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/","enable_viewSS":true,"has_lead":false,"track_slide_enable":1,"slide_count":70,"embed_code":"\u003Ciframe src=\"http://www.slideshare.net/slideshow/embed_code/23274403\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen webkitallowfullscreen mozallowfullscreen\u003E \u003C/iframe\u003E \u003Cdiv style=\"margin-bottom:5px\"\u003E \u003Cstrong\u003E \u003Ca href=\"http://www.slideshare.net/ssuser63877e/worldwide-collection-130604\" title=\"Worldwide Collection 130604\" target=\"_blank\"\u003EWorldwide Collection 130604\u003C/a\u003E \u003C/strong\u003E from \u003Cstrong\u003E\u003Ca href=\"http://www.slideshare.net/ssuser63877e\" target=\"_blank\"\u003E\u6587\u582f \u738b\u003C/a\u003E\u003C/strong\u003E \u003C/div\u003E","toolbar_partial":"slideshow/jsplayer_toolbar_presentation","hosted_in":"embed","meta_error_template":"\u003Cstyle type=\"text/css\"\u003E\n  .jsplayer-slide-error {\n    background-color: #000;\n    padding: 20% 0 13% !important;\n  }\n  .jsplayer-slide-error div {\n    text-align: center;\n  }\n  .jsplayer-slide-error img {\n    height: 79px !important;\n    margin: 0 0 10px;\n    width: 80px !important;\n  }\n  .jsplayer-slide-error .slide-error-body {\n    color: #eee;\n    font-family: 'Lucida Grande',Verdana, Arial, Helvetica, sans-serif;\n    padding: 0 !important;\n  }\n  .jsplayer-slide-error .slide-error-body p {\n    font-size: 0.8em;\n    line-height: 1.1em;\n    margin: 8px 0;\n  }   \n  .jsplayer-slide-error .slide-error-body input[type=button] {\n    margin: 7px 0 0;\n    padding: 7px 14px;\n  }\n\u003C/style\u003E\n\u003Cdiv class=\"jsplayer-slide-error\"\u003E\n  \u003Cdiv style=\"position:relative;\"\u003E\n    \u003Cimg src='//public.slidesharecdn.com/images/ssplayer/error_dudes-80x79.png' height=\"79\" width=\"80\" /\u003E\n    \u003Cdiv class=\"slide-error-body\"\u003E\n      \u003Cp\u003EWe have encountered an error.\u003C/p\u003E\n      \u003Cp\u003EPlease refresh the page.\u003C/p\u003E\n    \u003C/div\u003E\n  \u003C/div\u003E\n\u003C/div\u003E\n","player_type":"presentation","beacon_url":"stats.slideshare.net/1.gif","shareoptions":{"linkedin_share":"http://www.slideshare.net/share/linkedin/23274403/SlideShare:%20Worldwide%20Collection%20130604","html":"\u003Cdiv id=\"fb-root\"\u003E\u003C/div\u003E\n\u003Cscript\u003E\n(function(d, s, id) {\n  var js, fjs = d.getElementsByTagName(s)[0];\n  if (d.getElementById(id)) {return;}\n  js = d.createElement(s); js.id = id;\n  js.src = \"//connect.facebook.net/en_US/all.js\";\n  fjs.parentNode.insertBefore(js, fjs);\n  }(document, 'script', 'facebook-jssdk'));\n(function(){  var FBInitParams = {\n    appId  : '2490221586',\n    status : true, // check login status\n    cookie : true, // enable cookies to allow the server to access the session\n    xfbml  : true, // parse XFBML\n    oauth  : true,  // to enable OAuth 2.0\n    channelUrl  : '//public.slidesharecdn.com/channel.html'\n  };\n  if(typeof(FB) === \"object\"){\n    window.setTimeout(function(){\n      FB.XFBML.parse();\n      FB.Event.subscribe('edge.create',fbLike);\n    },50);\n  }else{\n    window.fbAsyncInit = function() {\n      FB.init(FBInitParams);\n      FB.Event.subscribe('edge.create',fbLike);\n    }\n  }\n  function fbLike(response,widget){\n    if(widget.dom \u0026\u0026 widget.dom.id === \"proLastScreenFB\"){\n      _gaq.push(['_trackEvent', 'bigfoot_slideview', 'proLastscreenFBLike']);\n    }\n  }\n})();\n\u003C/script\u003E\n\u003Cdiv class=\"shareoptions\"\u003E\n  \u003Cul class=\"thirdPartyShare\"\u003E\n\t\u003Cli\u003E\u003Ca href=\"#\" class=\"shareSprite Twitter\"\u003E\u0026nbsp; \u003C/a\u003E\u003C/li\u003E\n    \u003Cli\u003E\u003Ca href=\"#\" class=\"shareSprite Linkedin\"\u003E\u0026nbsp; \u003C/a\u003E\u003C/li\u003E\n    \u003Cli style=\"overflow:hidden;width:50px !important;\"\u003E\n      \u003Cdiv class=\"fb-like\" data-send=\"false\" data-layout=\"button_count\" data-width=\"50\" data-show-faces=\"false\"\u003E\u003C/div\n    \u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E","facebook_share":"http://www.slideshare.net/share/facebook/23274403/Check%20out%20this%20SlideShare%20presentation%20:%20Worldwide%20Collection%20130604","twitter_share":"http://www.slideshare.net/share/tweet/23274403/Worldwide%20Collection%20130604%20on%20@slideshare"},"video_slides":[],"is_private":false,"has_video":false,"page":null,"timestamp":1371878043,"toolbar_html":"\u003C!--[if IE 7]\u003E\n  \u003Cstyle\u003E\n    .toolbar .navActions { position: relative; top: -28px; }\n    div.toolbar .nav {margin-left : 37%; }\n  \u003C/style\u003E\n\u003C![endif]--\u003E\n  \u003Ca href=\"#\" class=\"sprite btnViewOnSS\" title=\"View on SlideShare\"\u003E\u0026nbsp;\u003C/a\u003E\u003C!-- view on SS --\u003E\n  \u003Cdiv class=\"nav\"\u003E\n    \u003Ca href=\"#btnFirst\" class=\"btnFirst\" title=\"First Slide\" rel=\"nofollow\"\u003E\u0026laquo;\u003C/a\u003E\n    \u003Ca href=\"#btnPrevious\" class=\"btnPrevious\" title=\"Previous Slide\" rel=\"nofollow\"\u003E\u0026lsaquo;\u003C/a\u003E\n    \u003Ca href=\"#btnNext\" class=\"btnNext\" title=\"Next Slide\" rel=\"nofollow\"\u003E\u0026rsaquo;\u003C/a\u003E\n    \u003Ca href=\"#btnLast\" class=\"btnLast\" title=\"Last Slide\" rel=\"nofollow\"\u003E\u0026raquo;\u003C/a\u003E\n  \u003C/div\u003E\n  \u003Cdiv class=\"navActions\"\u003E\n    \u003Ca href=\"#\" class=\"btnFullScreen\" title=\"View Fullscreen\" rel=\"nofollow\"\u003E\u0026nbsp;\u003C/a\u003E\n    \u003Ca href=\"#\" class=\"btnLeaveFullScreen\" title=\"Exit Fullscreen\" rel=\"nofollow\"\u003E\u0026nbsp;\u003C/a\u003E\n    \u003Clabel class=\"goToSlideLabel\"\u003E\u003Cinput type=\"text\" name=\"goToSlide\" value=\"1\" /\u003E\u003Cspan\u003E/123\u003C/span\u003E\u003C/label\u003E\n    \n      \u003Ca href=\"#\" class=\"btnShare\" title=\"Share\" rel=\"nofollow\"\u003E\u003C/a\u003E\n    \n  \u003C/div\u003E\n","id":23274403,"mode":"html","fullscreen_bgcolor":"jsplBgColorWhite","author_id":28738784,"disable_lastscreen":false,"use_ssl":false,"video_slides_count":0,"fullscreen_url":"/fullscreen/ssuser63877e/worldwide-collection-130604"};
-
-      $(function(){
-        jsplayer = new SSPlayer(config);
-        window.bindJsAPI && bindJsAPI(jsplayer);
-        $(jsplayer).bind('slidechanged', function(e){
-          $('.current_slide_number').text(e.ssData.index);
-        });
-
-        // Experiment code begins
-        window._sstq && _sstq.push(['track', 'embed_cta', 'pageload']);
-        $('.btnShare').bind('click', function(){
-          window._sstq && _sstq.push(['track', 'embed_cta', 'share_button']);
-        });
-        
-        // Experiment code ends
-      });
-    </script>
-  
-  <!------------VladCode------------------------------------------->
-  <!-- --------------------------------------------------------- -->
-  <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
-  <script type="text/javascript" src="EventCapture.js"></script>
-  <!-- --------------------------------------------------------- -->
-
-  </head>
-  <body style="border:0;margin:0;padding:0;width:100%;height:100%;">
-    
-    <a data-role="button" data-theme="svNav" rel="external" href="#" id="slide_previous_mobile" class="navIcons previous hideControls"><span class="ui-btn-inner"></span></a>
-      <div class="player embed_player lightPlayer fluidImage fluidLayout presentation_player" id="player">
-        <div class="stage">
-          <div class="slide_container tall_img">
-            
-                  <div data-index="1" class="slide show">
-                    <img class="slide_image" src="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-1-638.jpg?1371878043" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-1-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-1-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-1-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="2" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-2-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-2-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-2-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="3" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-3-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-3-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-3-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="4" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-4-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-4-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-4-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="5" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-5-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-5-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-5-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="6" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-6-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-6-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-6-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="7" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-7-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-7-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-7-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="8" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-8-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-8-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-8-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="9" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-9-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-9-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-9-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="10" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-10-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-10-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-10-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="11" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-11-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-11-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-11-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="12" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-12-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-12-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-12-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="13" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-13-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-13-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-13-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="14" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-14-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-14-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-14-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="15" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-15-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-15-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-15-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="16" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-16-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-16-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-16-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="17" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-17-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-17-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-17-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="18" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-18-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-18-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-18-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="19" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-19-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-19-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-19-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="20" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-20-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-20-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-20-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="21" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-21-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-21-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-21-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="22" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-22-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-22-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-22-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="23" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-23-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-23-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-23-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="24" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-24-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-24-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-24-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="25" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-25-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-25-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-25-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="26" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-26-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-26-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-26-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="27" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-27-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-27-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-27-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="28" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-28-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-28-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-28-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="29" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-29-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-29-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-29-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="30" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-30-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-30-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-30-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="31" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-31-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-31-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-31-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="32" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-32-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-32-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-32-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="33" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-33-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-33-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-33-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="34" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-34-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-34-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-34-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="35" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-35-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-35-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-35-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="36" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-36-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-36-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-36-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="37" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-37-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-37-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-37-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="38" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-38-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-38-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-38-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="39" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-39-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-39-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-39-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="40" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-40-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-40-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-40-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="41" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-41-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-41-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-41-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="42" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-42-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-42-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-42-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="43" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-43-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-43-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-43-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="44" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-44-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-44-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-44-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="45" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-45-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-45-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-45-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="46" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-46-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-46-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-46-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="47" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-47-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-47-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-47-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="48" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-48-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-48-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-48-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="49" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-49-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-49-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-49-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="50" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-50-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-50-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-50-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="51" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-51-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-51-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-51-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="52" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-52-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-52-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-52-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="53" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-53-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-53-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-53-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="54" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-54-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-54-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-54-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="55" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-55-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-55-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-55-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="56" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-56-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-56-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-56-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="57" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-57-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-57-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-57-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="58" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-58-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-58-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-58-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="59" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-59-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-59-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-59-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="60" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-60-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-60-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-60-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="61" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-61-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-61-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-61-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="62" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-62-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-62-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-62-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="63" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-63-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-63-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-63-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="64" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-64-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-64-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-64-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="65" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-65-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-65-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-65-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="66" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-66-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-66-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-66-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="67" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-67-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-67-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-67-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="68" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-68-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-68-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-68-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="69" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-69-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-69-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-69-320.jpg?1371878043" />
-                  </div>
-                
-                  <div data-index="70" class="slide">
-                    <img class="slide_image" src="" data-normal="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-70-638.jpg?1371878043" data-full="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/95/slide-70-1024.jpg?1371878043" data-small="http://image.slidesharecdn.com/worldwidecollection130604-130621032700-phpapp02/85/slide-70-320.jpg?1371878043" />
-                  </div>
-                
-          </div>
-        </div> <!-- end stage -->
-          <div class="toolbar_wrapper">
-            <div class="toolbar normal">
-              <!--[if IE 7]>
-  <style>
-    .toolbar .navActions { position: relative; top: -28px; }
-    div.toolbar .nav {margin-left : 37%; }
-  </style>
-<![endif]-->
-  <a href="#" class="sprite btnViewOnSS" title="View on SlideShare">&nbsp;</a><!-- view on SS -->
-  <div class="nav">
-    <a href="#btnFirst" class="btnFirst" title="First Slide" rel="nofollow">&laquo;</a>
-    <a href="#btnPrevious" class="btnPrevious" title="Previous Slide" rel="nofollow">&lsaquo;</a>
-    <a href="#btnNext" class="btnNext" title="Next Slide" rel="nofollow">&rsaquo;</a>
-    <a href="#btnLast" class="btnLast" title="Last Slide" rel="nofollow">&raquo;</a>
-  </div>
-  <div class="navActions">
-    <a href="#" class="btnFullScreen" title="View Fullscreen" rel="nofollow">&nbsp;</a>
-    <a href="#" class="btnLeaveFullScreen" title="Exit Fullscreen" rel="nofollow">&nbsp;</a>
-    <label class="goToSlideLabel"><input type="text" name="goToSlide" value="1" /><span>/70</span></label>
-    
-      <a href="#" class="btnShare" title="Share" rel="nofollow"></a>
-    
-  </div>
-
-            </div>
-          </div>
-          <div class="image_maps"></div>
-          <div class="embedCTAExperiment">
-            <div>
-              <!-- icon from http://www.iconfinder.com/icondetails/126567/128/contact_email_mail_send_icon -->
-              <img src="//public.slidesharecdn.com/images/emailicon.png" />
-              <span>Email</span></div>
-            <div>
-              <span style="font-size:22px;">&lt;/&gt;</span><span>Embed</span></div> 
-          </div>
-      </div>
-      <a data-role="button" data-theme="svNav" rel="external" href="#" id="slide_next_mobile" class="navIcons next hideControls"><span class="ui-btn-inner"></span></a>
-     
-    <script>
-      $.ajax({
-        url : 'http://www.slideshare.net/pingback/embed_or_homepageplayerhits/23274403',
-        type : 'GET',
-        data : {
-          ref : ''
-        },
-        cache : false
-      });
-    </script>
-  </body>
+			$(document).ready(function () {
+				$('.alert').hide();
+				$('#new_chat_form').submit(function (e) {
+					e.preventDefault();
+					var chat_name = $('#chat_name').val()
+						.split(' ').join('_')
+						.split('.').join('_')
+						.split('?').join('_')
+						.split('&').join('_')
+						.split('/').join('_');
+					$.getJSON('new/' + chat_name, function(res) {
+						if (res.error) {
+							console.log(res.error);
+							$('.alert').html(res.error).fadeIn(250);
+						}
+						else {
+							window.location = res.redirect + '#' + generateKey();
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="hero-unit">
+				<h1>OrangePotato/h1>
+				<p>Stream your presentation to anyone, anywhere</p>
+				<br />
+				<div class="alert alert-error">
+					Your Browser is not supported
+				</div>
+				<form class="input-append" id="new_chat_form">
+					<input type="text" class="input-xlarge" 
+						placeholder="Pick a title for your chat" id="chat_name" name="chat_name" />
+					<input type="submit" class="btn btn-inverse" value="Chat" />
+				</form>
+			</div>
+		</div>
+	</body>
 </html>

@@ -1,0 +1,31 @@
+{
+  "name": "OrangePotatoPresentations",
+  "version": "0.1.0",
+  "description": "OrangePotato Presentations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robbriggs/orangepotato.git"
+  },
+  "keywords": [
+    "Node.js",
+    "application"
+  ],
+  "author": {
+    "name": "OrangePotato",
+    "url":  "http://www.davidtimms.co.uk/"
+  },
+
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
+}

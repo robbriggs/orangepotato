@@ -18,6 +18,7 @@ body {
 }
 .hero-unit {
 	padding-bottom: 45px;
+	height:250px;
 }
 @media screen and (max-width: 450px) {
 	.hero-unit {
@@ -30,4 +31,15 @@ body {
 }
 alert {
 	text-align: left;
+}
+#ch-qrcode-form {
+	position: relative;
+}
+.center-bg {
+	width: 126px;
+	background-repeat: no-repeat;
+	background-position: top center;
+	text-align: center;
+	display: inline-block;
+	position: relative;
 }

@@ -1,7 +1,11 @@
 {
-  "name": "OrangePotato Presentations",
+  "name": "OrangePotatoPresentations",
   "version": "0.1.0",
   "description": "OrangePotato Presentations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robbriggs/orangepotato.git"
+  },
   "keywords": [
     "Node.js",
     "application"

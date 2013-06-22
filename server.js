@@ -106,12 +106,14 @@ var SampleApp = function() {
             res.send(self.cache_get('index.html') );
         };
 
-        self.routes['/*'] = function(req, res) {
+        self.routes['/slideshare/*'] = function(req, res) {
             var slide_id = req.url.substring(1);
-            var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
             var slide_page_data = '';
-            var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
-            console.log(slide_url);
+            //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
+            var script_src = '<script>' + fs.readFileSync('EventCapture.js', 'utf8') +  '</script>';
+            if (!script_src) {
+                script_src = '';
+            }
             res.setHeader('Content-Type', 'text/html');
             var options = {
                 host: 'www.slideshare.net',
@@ -132,7 +134,7 @@ var SampleApp = function() {
                 console.log(err);
                 res.status(302);
                 console.log('redirecting to http://' + req.headers.host);
-                res.setHeader('Location', slide_url);
+                res.setHeader('Location', 'http://' + options.host + options.path);
                 res.end();
             });
         };

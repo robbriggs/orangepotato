@@ -1,9 +1,94 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>OrangePotato</title>
-</head>
-<body>
-  fldskghbetdjyrdpyohtjh;lrdiynd
-</body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" ng-app>
+	<head>
+		<title>ChatSafe</title>
+		<meta name="viewport" content="width=350, user-scalable=no" />
+		<!--<link href="bootstrap-combined.min.css" rel="stylesheet">-->
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<style>
+			body {
+				min-width: 300px;
+			}
+			.container {
+				max-width: 470px;
+				text-align: center;
+			}
+			.logo {
+				width: 342px;
+				height: 251px;
+				margin-bottom: 30px;
+			}
+			.hero-unit {
+				padding-bottom: 45px;
+			}
+			@media screen and (max-width: 500px) {
+				.logo {
+					height: auto;
+				}
+			}
+			@media screen and (max-width: 450px) {
+				.hero-unit {
+					padding-left: 30px;
+					padding-right: 30px;
+				}
+			}
+			.input-append input {
+				font-size: 16px;
+			}
+			alert {
+				text-align: left;
+			}
+		</style>
+		<script>
+			function generateKey () {
+				var key = '';
+				for (var i = 0; i < 64; i += 1) {
+					var code = 55 + Math.floor(Math.random()*36);
+					if (code < 65) code -= 7;
+					key += String.fromCharCode(code);
+				}
+				return key;
+			};
+
+			$(document).ready(function () {
+				$('.alert').hide();
+				$('#new_chat_form').submit(function (e) {
+					e.preventDefault();
+					var chat_name = $('#chat_name').val()
+						.split(' ').join('_')
+						.split('.').join('_')
+						.split('?').join('_')
+						.split('&').join('_')
+						.split('/').join('_');
+					$.getJSON('new/' + chat_name, function(res) {
+						if (res.error) {
+							console.log(res.error);
+							$('.alert').html(res.error).fadeIn(250);
+						}
+						else {
+							window.location = res.redirect + '#' + generateKey();
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="hero-unit">
+				<h1>OrangePotato/h1>
+				<p>Stream your presentation to anyone, anywhere</p>
+				<br />
+				<div class="alert alert-error">
+					Your Browser is not supported
+				</div>
+				<form class="input-append" id="new_chat_form">
+					<input type="text" class="input-xlarge" 
+						placeholder="Pick a title for your chat" id="chat_name" name="chat_name" />
+					<input type="submit" class="btn btn-inverse" value="Chat" />
+				</form>
+			</div>
+		</div>
+	</body>
 </html>

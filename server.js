@@ -69,17 +69,18 @@ httpApp.configure(function() {
     }
 });
 
+var connection_details = {};
 var setIPandPort = function () {
     //  Set the environment variables we need.
-    easyrtcCfg.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
-    easyrtcCfg.port = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
+    connection_details.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
+    connection_details.port = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
 
 
-    if (typeof  easyrtcCfg.ipaddress === "undefined") {
+    if (typeof  connection_details.ipaddress === "undefined") {
         //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
         //  allows us to run/test the app locally.
         console.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
-         easyrtcCfg.ipaddress = "127.0.0.1";
+         connection_details.ipaddress = "127.0.0.1";
     };
 };
 setIPandPort();
@@ -155,11 +156,11 @@ if (easyrtcCfg.sslEnable) {  // Start SSL Server (https://)
     }    
 } else {    // Start HTTP server (http://)
 
-    var server = http.createServer(httpApp).listen(easyrtcCfg.port, easyrtcCfg.ipaddress, function() {
+    var server = http.createServer(httpApp).listen(connection_details.port, connection_details.ipaddress, function() {
             console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), easyrtcCfg.ipaddress, easyrtcCfg.port);
+                        Date(Date.now() ), connection_details.ipaddress, connection_details.port);
         });
-    logServer.info('HTTP Server started on port: ' + easyrtcCfg.port, { label: 'easyrtcServer'});
+    logServer.info('HTTP Server started on port: ' + connection_details.port, { label: 'easyrtcServer'});
 }
 
 

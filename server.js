@@ -77,7 +77,7 @@ connection_details.port = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 if (typeof  connection_details.ipaddress === "undefined") {
     //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
     //  allows us to run/test the app locally.
-    console.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
+    console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
      connection_details.ipaddress = '127.0.0.1';
 };
 console.log(JSON.stringify(connection_details));

@@ -5,31 +5,16 @@
 		<meta name="viewport" content="width=550, user-scalable=no" />
 		<!--<link href="bootstrap-combined.min.css" rel="stylesheet">-->
 		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-		<style>
-			body {
-				min-width: 300px;
-			}
-			.container {
-				max-width: 600px;
-				text-align: center;
-			}
-			.hero-unit {
-				padding-bottom: 45px;
-			}
-			@media screen and (max-width: 450px) {
-				.hero-unit {
-					padding-left: 30px;
-					padding-right: 30px;
-				}
-			}
-			.input-append input {
-				font-size: 16px;
-			}
-			alert {
-				text-align: left;
-			}
-		</style>
+		<script src="js/qrcode.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/easyrtc.js"></script>
+    <script type="text/javascript" src="js/present.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+
 		<script>
 			$(document).ready(function () {
 				$('.alert').hide();
@@ -40,6 +25,9 @@
 					id = id.substring(0, id.indexOf('"'));
 					window.location = '/slideshare' + id;
 				});
+
+				silentConnect();
+				console.log(selfEasyrtcid);
 			});
 		</script>
 	</head>
@@ -53,11 +41,23 @@
 					Your Browser is not supported
 				</div>
 				<form class="input-append" id="new_present_form">
-					<input type="text" class="input-xlarge" 
+					<input type="text" class="input-xlarge search-query" 
 						placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
 					<input type="submit" class="btn btn-primary" value="Present" />
 				</form>
+				<div id="qrcode"></div>
 			</div>
 		</div>
+
+    <div id="demoContainer">
+        <div id="connectControls">
+            <div id="qrcode"></div>
+            <br />
+            <strong>Connected users:</strong>
+            <div id="otherClients"></div>
+
+        </div>
+    </div>
+
 	</body>
 </html>

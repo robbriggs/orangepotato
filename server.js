@@ -1,3 +1,4 @@
+#!/bin/env node
 /*
 Copyright (c) 2013, Priologic Software Inc.
 All rights reserved.
@@ -72,6 +73,7 @@ var setIPandPort = function () {
     //  Set the environment variables we need.
     easyrtcCfg.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
     easyrtcCfg.port = process.env.OPENSHIFT_INTERNAL_PORT || 8000;
+
 
     if (typeof  easyrtcCfg.ipaddress === "undefined") {
         //  Log errors on OpenShift but continue w/ 127.0.0.1 - this

@@ -105,13 +105,8 @@ var createRoutes = function() {
                 script_src = '';
             }
             res.setHeader('Content-Type', 'text/html');
-            var options = {
-                host: 'www.slideshare.net',
-                port: 80,
-                path: '/slideshow/embed_code/' + slide_id,
-                method: 'GET'
-            };
-            var request = http.get(options, function(slide_res) {
+            var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
+            var request = http.get(slide_url, function(slide_res) {
                 slide_res.on('data', function (chunk) {
                     slide_page_data += chunk;
                 });
@@ -123,8 +118,8 @@ var createRoutes = function() {
             request.on('error', function(err) {
                 console.log(err);
                 res.status(302);
-                console.log('redirecting to http://' + req.headers.host);
-                res.setHeader('Location', 'http://' + options.host + options.path);
+                console.log('redirecting to http://' + slide_url);
+                res.setHeader('Location', 'http://' + slide_url);
                 res.end();
             });
         };
@@ -236,5 +231,32 @@ initializeServer = function() {
     };
 
 cache_get = function(key) { return fs.readFileSync(key); };
+
+var SlideShare = function () {
+    var self = this;
+}
+SlideShare.prototype.getId = function(original_url, callback) {
+    var page_data = '';
+    var request = http.get(original_url, function(slide_res) {
+        slide_res.on('data', function (chunk) {
+            page_data += chunk;
+        });
+        slide_res.on('end', function(){
+            var prefix = 'slideshow/embed_code';
+            var id = page_data.substring(page_data.indexOf(prefix) + prefix.length + 1);
+            id = id.substring(0, id.indexOf('"'));
+            callback(id);
+        });
+    });
+    request.on('error', function(err) {
+        console.log(err);
+        callback(undefined);
+    });
+};
+
+SlideShare.test = new SlideShare();
+SlideShare.test.getId('http://www.slideshare.net/ashwan/meet-the-new-slideshare-embed', function (id) {
+    console.log('SlideShare ID: ' + id);
+});
 
 initializeServer();

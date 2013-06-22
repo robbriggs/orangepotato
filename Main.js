@@ -1,5 +1,5 @@
+var ev_cap = new EventCapture();
 window.onload = function(e){
-	//Retrieve data
-	var ev_han = new EventCapture();
-	ev_han.addMainListener();
+	//Start Listening
+	ev_cap.addMainListener();
 };

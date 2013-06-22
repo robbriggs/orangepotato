@@ -45,8 +45,26 @@ var SampleApp = function() {
 
         //  Local cache for static content.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
+        for (var i=0; i<self.static_files.length; i++) {
+            self.zcache[self.static_files[i]] = fs.readFileSync('./static/' + self.static_files[i]);
+        }
     };
 
+    self.dirFiles = function(dir_path) {
+        var file_list = [];
+        var dir_items =  fs.readdirSync(dir_path);
+
+        for (var i=0; i<dir_items.length; i++) {
+            var stats = fs.statSync(dir_path + dir_items[i]);
+            if (stats.isFile()) {
+                file_list.push(dir_items[i]);
+            }
+            else {
+                // dir_items[i] is a directory
+            }
+        }
+        return file_list;
+    }
 
     /**
      *  Retrieve entry (content) from cache.
@@ -110,7 +128,7 @@ var SampleApp = function() {
             var slide_id = req.url.substring(12);
             var slide_page_data = '';
             //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
-            var script_src = '<script>' + fs.readFileSync('EventCapture.js', 'utf8') +  '</script>';
+            var script_src = '<script>' + self.cache_get('EventCapture.js') +  '</script>';
             if (!script_src) {
                 script_src = '';
             }
@@ -141,6 +159,30 @@ var SampleApp = function() {
     };
 
 
+    self.createStaticRoute = function(static_file) {
+        return function(req, res) {
+            var mime_type = self.mimeType[static_file.substring(static_file.lastIndexOf('.') + 1)];
+            if (mime_type === undefined) {
+                mimeType = "text/plain";
+            }
+            res.setHeader('Content-Type', mime_type);
+            res.send(self.cache_get(static_file));
+        };
+    };
+
+    self.mimeType = {   txt: "text/plain",
+                        html: "text/html", 
+                        css: "text/css", 
+                        js: "text/javascript",
+                        xml: "text/xml",
+                        json: "application/json",
+                        png: "image/png",
+                        jpg: "image/jpeg",
+                        jpeg: "image/jpeg",
+                        gif: "image/gif"};
+
+
+
     /**
      *  Initialize the server (express) and create the routes and register
      *  the handlers.
@@ -161,6 +203,7 @@ var SampleApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
+        self.static_files = self.dirFiles('./static/');
         self.populateCache();
         self.setupTerminationHandlers();
 

@@ -68,6 +68,52 @@ httpApp.configure(function() {
     }
 });
 
+createRoutes = function() {
+        routes = { };
+
+        // Routes for /health, /asciimo and /
+        routes['/health'] = function(req, res) {
+            res.send('1');
+        };
+
+        routes['/'] = function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.send(cache_get('index.html'));
+        };
+
+        routes['/slideshare/*'] = function(req, res) {
+            var slide_id = req.url.substring(12);
+            var slide_page_data = '';
+            //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
+            var script_src = '<script>' + cache_get('static/EventCapture.js') +  '</script>';
+            if (!script_src) {
+                script_src = '';
+            }
+            res.setHeader('Content-Type', 'text/html');
+            var options = {
+                host: 'www.slideshare.net',
+                port: 80,
+                path: '/slideshow/embed_code/' + slide_id,
+                method: 'GET'
+            };
+            var request = http.get(options, function(slide_res) {
+                slide_res.on('data', function (chunk) {
+                    slide_page_data += chunk;
+                });
+                slide_res.on('end', function(){
+                    slide_page_data = slide_page_data.replace('</head>', script_src + '</head>');
+                    res.send(slide_page_data);
+                });
+            });
+            request.on('error', function(err) {
+                console.log(err);
+                res.status(302);
+                console.log('redirecting to http://' + req.headers.host);
+                res.setHeader('Location', 'http://' + options.host + options.path);
+                res.end();
+            });
+        };
+    };
 
 // Start either the HTTP or HTTPS web service
 logServer.info('Starting easyRTC Server (v' + easyrtcCfg.easyrtcVersion +')', { label: 'easyrtcServer'});
@@ -154,3 +200,22 @@ io.sockets.on('connection', function (socket) {
 if (easyrtcCfg.updateCheckEnable) {
     g.updateCheck(http);
 }
+
+initializeServer = function() {
+        createRoutes();
+        app = httpApp ;
+        app.configure(function() {
+                app.use('/demos', express.static(__dirname+'/demos'));
+                app.use(express.static(__dirname + '/static/'));
+        });
+
+        //  Add handlers for the app (from the routes).
+        for (var r in routes) {
+            app.get(r, routes[r]);
+            console.log(r);
+        }
+    };
+
+cache_get = function(key) { return fs.readFileSync(key); };
+
+initializeServer();

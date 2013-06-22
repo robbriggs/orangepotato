@@ -12,8 +12,3 @@ EventCapture.prototype.addMainListener = function(){
 		}
 	}
 };
-
-window.onload = function(e){
-	var ev_han = new EventCapture();
-	ev_han.addMainListener();
-};

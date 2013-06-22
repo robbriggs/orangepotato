@@ -86,6 +86,7 @@ createRoutes = function() {
             var slide_page_data = '';
             //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
             var script_src = '<script>' + cache_get('static/EventCapture.js') +  '</script>';
+
             if (!script_src) {
                 script_src = '';
             }

@@ -121,8 +121,14 @@ var SampleApp = function() {
 
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
-            res.send(self.cache_get('index.html') );
+            res.send(self.cache_get('index.html'));
         };
+
+        // Add routes for static files in cache
+        for (var i=0; i<self.static_files.length; i++) {
+            console.log('Creating cached route for ' + self.static_files[i]);
+            self.routes['/' + self.static_files[i]] = self.createStaticRoute(self.static_files[i]);
+        }
 
         self.routes['/slideshare/*'] = function(req, res) {
             var slide_id = req.url.substring(12);

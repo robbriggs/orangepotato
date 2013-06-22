@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 easyrtcCfg  = require('./config');          // All server configuration (global)
 var g       = require('./lib/general');     // General helper functions
 var c       = require('./lib/connection');  // easyRTC connection functions
-
+var p       = require('./lib/present');
 
 // Ensure required modules are installed before beginning
 if (!g.moduleExists('express') || !g.moduleExists('socket.io') || !g.moduleExists('winston')) {
@@ -43,7 +43,6 @@ var http    = require('http');              // http server core module
 var express = require('express');           // web framework external module
 var sio     = require('socket.io');         // web socket external module
 var winston = require('winston');           // logging module
-
 
 // Logging Setup
 g.logInit();                                // Initialize logging settings
@@ -142,7 +141,7 @@ io.sockets.on('connection', function (socket) {
         logServer.debug('easyRTC: Socket [' + socket.id + '] command received', { label: 'easyrtc', easyrtcid:connectionEasyRtcId, data:msg});
         c.onEasyRtcCmd(io, socket, connectionEasyRtcId, msg);
     });
-    
+
     // Upon a socket disconnecting (either directed or via time-out)
     socket.on('disconnect', function(data) {
         logServer.debug('easyRTC: Socket [' + socket.id + '] disconnected', { label: 'easyrtc', easyrtcid:connectionEasyRtcId});

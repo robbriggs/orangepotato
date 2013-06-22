@@ -117,16 +117,25 @@ function loginSuccess(easyRTCId) {
     disable("connectButton");
     // enable("disconnectButton");
     enable('otherClients');
-    selfEasyrtcid = easyRTCId;
-    document.getElementById("iam").innerHTML = "I am " + easyRTCId;
+    sdisplayQR(easyRTCId);
 }
 
 function bgLoginSuccess(easyRTCId) {
     enable('otherClients');
-    selfEasyrtcid = easyRTCId;
-    document.getElementById("iam").innerHTML = "I am " + easyRTCId;
+    displayQR(easyRTCId);
 }
 
+function displayQR(easyRTCId) {
+    selfEasyrtcid = easyRTCId;
+    new QRCode(document.getElementById("qrcode"), {
+        text: "http://orangepotato-davidtimms.rhcloud.com/c/"+easyRTCId,
+        width: 256,
+        height: 256,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.L
+    });
+}
 
 function loginFailure(message) {
     easyRTC.showError("LOGIN-FAILURE", message);

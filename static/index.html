@@ -7,6 +7,7 @@
 		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
     <link href="css/flat-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="js/qrcode.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="../js/easyrtc.js"></script>
@@ -44,15 +45,17 @@
 						placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
 					<input type="submit" class="btn btn-primary" value="Present" />
 				</form>
+				<div id="qrcode"></div>
 			</div>
 		</div>
 
     <div id="demoContainer">
         <div id="connectControls">
-            <div id="iam">Not yet connected...</div>
+            <div id="qrcode"></div>
             <br />
             <strong>Connected users:</strong>
             <div id="otherClients"></div>
+
         </div>
     </div>
 

@@ -1,22 +1,14 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "OrangePotato Presentations",
+  "version": "0.1.0",
+  "description": "OrangePotato Presentations",
   "keywords": [
-    "OpenShift",
     "Node.js",
-    "application",
-    "openshift"
+    "application"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url":  "http://www.openshift.com/"
-  },
-  "homepage": "http://www.openshift.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://gitub.com/openshift/origin-server"
+    "name": "OrangePotato",
+    "url":  "http://www.davidtimms.co.uk/"
   },
 
   "engines": {
@@ -25,6 +17,7 @@
   },
 
   "dependencies": {
+
   },
   "devDependencies": {},
   "bundleDependencies": [],

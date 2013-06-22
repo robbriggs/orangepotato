@@ -2,6 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var http = require('http');
 
 
 /**
@@ -23,7 +24,7 @@ var SampleApp = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -100,14 +101,40 @@ var SampleApp = function() {
             res.send('1');
         };
 
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        };
-
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
+        };
+
+        self.routes['/*'] = function(req, res) {
+            var slide_id = req.url.substring(1);
+            var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
+            var slide_page_data = '';
+            var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
+            console.log(slide_url);
+            res.setHeader('Content-Type', 'text/html');
+            var options = {
+                host: 'www.slideshare.net',
+                port: 80,
+                path: '/slideshow/embed_code/' + slide_id,
+                method: 'GET'
+            };
+            var request = http.get(options, function(slide_res) {
+                slide_res.on('data', function (chunk) {
+                    slide_page_data += chunk;
+                });
+                slide_res.on('end', function(){
+                    slide_page_data = slide_page_data.replace('</head>', script_src + '</head>');
+                    res.send(slide_page_data);
+                });
+            });
+            request.on('error', function(err) {
+                console.log(err);
+                res.status(302);
+                console.log('redirecting to http://' + req.headers.host);
+                res.setHeader('Location', slide_url);
+                res.end();
+            });
         };
     };
 

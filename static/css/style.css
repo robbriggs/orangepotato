@@ -8,3 +8,26 @@ body{
 	text-align: center;
 	font-size: 200%;
 }
+
+body {
+	min-width: 300px;
+}
+.container {
+	max-width: 600px;
+	text-align: center;
+}
+.hero-unit {
+	padding-bottom: 45px;
+}
+@media screen and (max-width: 450px) {
+	.hero-unit {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+.input-append input {
+	font-size: 16px;
+}
+alert {
+	text-align: left;
+}

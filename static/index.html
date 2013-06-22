@@ -1,20 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>easyRTC - Server Root</title>
-    <script type="text/javascript">
-        function forward(){ window.location = "/demos/index.html" }
-    </script>
-</head>
-<body onLoad="setTimeout('forward()', 5000)">
-    <h1>You have installed easyRTC!</h1>
-    
-    <h2>This is the easyRTC Server Web Root</h2>
-    
-    <p>This is the easiest location to put your own static html files for developing WebRTC applications.</p>
-    
-    <p>In the meantime we'll forward you to <a href="demos/index.html">the easyRTC Demo page</a>...</p>
-    
-    <a href="http://www.easyrtc.com"><img src="images/powered_by_easyrtc.png" width="200" height="60" alt="Powered by easyRTC" /></a>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" ng-app>
+	<head>
+		<title>OrangePotato | Presentation Streaming</title>
+		<meta name="viewport" content="width=550, user-scalable=no" />
+		<!--<link href="bootstrap-combined.min.css" rel="stylesheet">-->
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/easyrtc.js"></script>
+    <script type="text/javascript" src="js/present.js"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+
+		<script>
+			$(document).ready(function () {
+				$('.alert').hide();
+				$('#new_present_form').submit(function (e) {
+					e.preventDefault();
+					var id = $('#slideshare_url').val();
+					id = id.substring(id.indexOf('embed_code') + 10);
+					id = id.substring(0, id.indexOf('"'));
+					window.location = '/slideshare' + id;
+				});
+
+				silentConnect();
+				console.log(selfEasyrtcid);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="hero-unit">
+				<h1>OrangePotato</h1>
+				<p>Stream your presentation to anyone, anywhere</p>
+				<br />
+				<div class="alert alert-error">
+					Your Browser is not supported
+				</div>
+				<form class="input-append" id="new_present_form">
+					<input type="text" class="input-xlarge search-query" 
+						placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
+					<input type="submit" class="btn btn-primary" value="Present" />
+				</form>
+			</div>
+		</div>
+
+    <div id="demoContainer">
+        <div id="connectControls">
+            <div id="iam">Not yet connected...</div>
+            <br />
+            <strong>Connected users:</strong>
+            <div id="otherClients"></div>
+        </div>
+    </div>
+
+	</body>
 </html>

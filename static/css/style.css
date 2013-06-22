@@ -1,0 +1,8 @@
+body{
+	margin-top:4em;
+}
+
+#jump-input input{
+	text-align: center;
+	font-size: 200%;
+}

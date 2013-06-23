@@ -150,20 +150,12 @@ var puburl;
 var slideshareurl;
 
 easyRTC.setAcceptChecker(function(caller, cb) {
-    if( easyRTC.getConnectionCount() > 0 ) {
-        console.log("Drop current call and accept new from " + caller + " ?");
-    }
-    else {
-        console.log("Accept incoming call from " + caller + " ?");
-        var url = 'http://'+location.hostname +":"+location.port+ "/p/" + caller + '/' + slideshareurl;
-        console.log(url);
-        puburl = url;
+    console.log("Accept incoming call from " + caller + " ?");
+    var url = 'http://'+location.hostname +":"+location.port+ "/p/" + caller + '/' + slideshareurl;
+    console.log(url);
+    puburl = url;
 
-    }
     var acceptTheCall = function(wasAccepted) {
-        if( wasAccepted && easyRTC.getConnectionCount() > 0 ) {
-            easyRTC.hangupAll();    
-        }
         cb(wasAccepted);
     }
     acceptTheCall(true);
@@ -221,5 +213,10 @@ function showPresURL() {
 }
 
 function pressubpress() {
-    open(puburl+'?mute=true', 'target="_blank');
+    console.log(puburl);
+    open(puburl);
+}
+
+function createIframe(url){
+    $('container').append('<iframe src="'+url+'"></iframe>');
 }

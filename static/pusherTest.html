@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('25c5f81316b913b402ca');
+    var privateChannel = pusher.subscribe('private-channel');
+		privateChannel.bind('pusher:subscription_succeeded', function(data) { 
+    
+      setInterval(function(){
+  	     privateChannel.trigger('client-event', {"x":"haha"}); 
+      }, 3000);
+    
+
+    });
+
+privateChannel.bind('pusher:subscription_error', function(status) {
+  if(status == 408 || status == 503){
+  }
+});
+
+  </script>
+</head>

@@ -5,7 +5,7 @@ $(document).ready(function () {
 		this.src = $('.goToSlideLabel input')[0];
 		this.slide_buttons = ["btnFirst", "btnLast", "btnPrevious", "btnNext"];
 		this.current_slide_number = 1;
-		this.slide_count = parseInt(this.src.value);
+		this.slide_count = parseInt($('.goToSlideLabel span').html().substring(1));
 		this.src.value = 1;
 	};
 
@@ -37,27 +37,44 @@ $(document).ready(function () {
 		//Handle arrow keys events
 		document.onkeyup = function(e){
 				if(e.keyCode == 91){
-					selft.current_slide_number-=1;
+					self.current_slide_number-=1;
 					pusherPush(self.current_slide_number);
 				}
 				else if(e.keyCode == 92){
-					selft.current_slide_number+=1;
+					self.current_slide_number+=1;
 					pusherPush(self.current_slide_number);
 				}
 		};
 	};
 
 	EventCapture.prototype.moveToSlide = function (slideNo) {
-		//this.disabled_triggers = true;
-		//var e = jQuery.Event("keydown");
-		//e.which = 13; // Enter
-		//$('.goToSlideLabel input').val(slideNo).trigger(e);
-		$(".btnFirst").click();
-		for (var i = 1; i < slideNo; i += 1) {
-			console.log("clicking next");
-			$(".btnNext").click();
-		};
-		//this.disabled_triggers = false;
+		this.disabled_triggers = true;
+		slideNo = parseInt(slideNo);
+		var i = this.current_slide_number;
+		console.log('slide count: ' + this.slide_count);
+		console.log('current slide: ' + this.current_slide_number + ', desired slide: ' + slideNo);
+		if (slideNo <= 1) {
+			console.log("clicking first " + i);
+			$(".btnFirst").click();
+		}
+		else if (slideNo === this.slide_count) {
+			console.log("clicking last " + i);
+			$(".btnLast").click();
+		}
+		else {
+			while (i < slideNo) {
+				console.log("clicking next " + i);
+				$(".btnNext").click();
+				i += 1;
+			};
+			while (i > slideNo) {
+				console.log("clicking previous " + i);
+				$(".btnPrevious").click();
+				i -= 1;
+			};
+		}
+		this.current_slide_number = slideNo;
+		this.disabled_triggers = false;
 	};
 
 	EventCapture.prototype.inRange = function (slide_no) {

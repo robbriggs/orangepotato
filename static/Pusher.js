@@ -1,11 +1,13 @@
 var pusher = new Pusher('25c5f81316b913b402ca');
 var privateChannel = pusher.subscribe('private-channel');
 var pusherPush;
+/*
 Pusher.log = function(message) {
 	if (window.console && window.console.log) {
 		window.console.log(message);
 	}
 };
+*/
 $(document).ready(function () {
 	privateChannel.bind('pusher:subscription_succeeded', function(data) { 
 		//ev_cap.moveToSlide(data.message);

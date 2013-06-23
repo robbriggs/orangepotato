@@ -57,6 +57,8 @@ function connect() {
 function silentConnect() {
     console.log("Initializing.");
     easyRTC.setLoggedInListener();
+    easyRTC.enableVideo(false);
+    easyRTC.enableAudio(false);
     easyRTC.connect("OrangePotato", bgLoginSuccess, loginFailure);
 }
 
@@ -103,6 +105,7 @@ function bgLoginSuccess(easyRTCId) {
 }
 
 function displayQR(easyRTCId) {
+    if(typeof(QRCode) == "undefined"){ return; }
     selfEasyrtcid = easyRTCId;
     var address = (location.hostname == "localhost") ? "localhost:8080" : location.hostname;
     new QRCode(document.getElementById("qrcode"), {

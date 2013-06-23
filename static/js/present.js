@@ -100,7 +100,7 @@ function loginSuccess(easyRTCId) {
 
 function bgLoginSuccess(easyRTCId) {
     enable('otherClients');
-    // displayQR(easyRTCId);
+    displayQR(easyRTCId);
     console.log(easyRTC.myEasyrtcid);
 }
 

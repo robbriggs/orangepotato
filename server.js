@@ -286,7 +286,14 @@ var SlideShare = function () {
 }
 SlideShare.prototype.getId = function(original_url, callback) {
     var page_data = '';
-    var request = http.get(original_url, function(slide_res) {
+    var options = {
+      hostname: 'www.slideshare.net',
+      port: 80,
+      path: original_url,
+      method: 'GET'
+    };
+    var request = http.get(options, function(slide_res) {
+        slide_res.setEncoding('utf8');
         slide_res.on('data', function (chunk) {
             page_data += chunk;
         });
@@ -304,7 +311,7 @@ SlideShare.prototype.getId = function(original_url, callback) {
 };
 
 SlideShare.test = new SlideShare();
-SlideShare.test.getId('http://www.slideshare.net/ashwan/meet-the-new-slideshare-embed', function (id) {
+SlideShare.test.getId('/ashwan/meet-the-new-slideshare-embed', function (id) {
     console.log('SlideShare ID: ' + id);
 });
 

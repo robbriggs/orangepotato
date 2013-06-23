@@ -74,7 +74,9 @@ $(document).ready(function () {
 			};
 		}
 		this.current_slide_number = slideNo;
-		this.disabled_triggers = false;
+		if	(!document.getElementById('controllerID')){
+			this.disabled_triggers = false;
+		}
 	};
 
 	EventCapture.prototype.inRange = function (slide_no) {

@@ -11,6 +11,7 @@ function pusherPush(number){
 	
 	privateChannel.bind('pusher:subscription_succeeded', function(data) { 
 		privateChannel.trigger('client-event', {"message": number});
+		console.log(data.message);
 		ev_cap.moveToSlide(data.message);
 	});
 

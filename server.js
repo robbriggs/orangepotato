@@ -45,8 +45,6 @@ var http    = require('http');              // http server core module
 var express = require('express');           // web framework external module
 var sio     = require('socket.io');         // web socket external module
 var winston = require('winston');           // logging module
-var Pusher = require('pusher');
-
 
 // Logging Setup
 g.logInit();                                // Initialize logging settings
@@ -58,7 +56,6 @@ var logSocketIo = winston.loggers.get('socketIo');
 
 //  Set express http server options.
 var httpApp = express();
-httpApp.use( express.bodyParser() );
 httpApp.configure(function() {
     var logStream = {
         write: function(message, encoding){
@@ -287,7 +284,6 @@ cache_get = function(key) { return fs.readFileSync(key); };
 var SlideShare = function () {
     var self = this;
 }
-
 SlideShare.prototype.getId = function(original_url, callback) {
     var page_data = '';
     var options = {
@@ -321,25 +317,5 @@ SlideShare.test = new SlideShare();
 SlideShare.test.getId('/ashwan/meet-the-new-slideshare-embed', function (id) {
     console.log('SlideShare ID: ' + id);
 });
-
- //Pusher.channel_auth_transport = 'jsonp';
-//Pusher.channel_auth_endpoint = '/pusher/auth';
-
-var pusher = new Pusher({
-  appId: "47201",
-  key: "25c5f81316b913b402ca",
-  secret: "2a8185337a8dac32ab35"
-});
-
-
-httpApp.post( '/pusher/auth', function( req, res ) {
-
-  var socketId = req.body.socket_id;
-  var channel = req.body.channel_name;
-  var auth = pusher.auth( socketId, channel );
-  
-
-  res.send(auth);
-} );
 
 initializeServer();

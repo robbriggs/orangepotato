@@ -146,6 +146,8 @@ easyRTC.setOnStreamClosed( function (caller) {
     disable("hangupButton");
 });
 
+var puburl;
+var slideshareurl;
 
 easyRTC.setAcceptChecker(function(caller, cb) {
     if( easyRTC.getConnectionCount() > 0 ) {
@@ -153,8 +155,9 @@ easyRTC.setAcceptChecker(function(caller, cb) {
     }
     else {
         console.log("Accept incoming call from " + caller + " ?");
-        var url = location.hostname +":"+location.port+ "/p/" + caller;
+        var url = 'http://'+location.hostname +":"+location.port+ "/p/" + caller + '/' + slideshareurl;
         console.log(url);
+        puburl = url;
 
     }
     var acceptTheCall = function(wasAccepted) {
@@ -165,4 +168,58 @@ easyRTC.setAcceptChecker(function(caller, cb) {
     }
     acceptTheCall(true);
     console.log("I accepted a call!")
+    showPresURL();
 } );
+
+$(document).ready(function () {
+    $('.alert').hide();
+    $('#ch-qrcode-form').hide();
+    $('#ph-qrcode-form').hide();
+    $('#new_present_form').submit(function (e) {
+        e.preventDefault();
+        var id = $('#slideshare_url').val();
+        id = id.substring(id.indexOf('embed_code') + 10);
+        id = id.substring(0, id.indexOf('"'));
+        window.location = '/slideshare' + id;
+    });
+
+    silentConnect();
+    console.log(selfEasyrtcid);
+});
+
+function slidesharesubpress() {
+    var theyvegivenme = $('#slideshare_url').val();
+    
+    if (theyvegivenme == "")
+        theyvegivenme = '/ashwan/meet-the-new-slideshare-embed';
+
+    $.getJSON('/get-slideshare-id?slideshare_url='+theyvegivenme, function(data) {
+        if (data.error) {
+            $('#slideshare_url_control_group').addClass("error");
+            $('#slideshare_url').val("Invalid url, try again");
+        }else{
+            $('#pres-url-form').fadeOut('slow', function() {
+                $('#ch-qrcode-form').fadeIn('slow', function() {});
+                slideshareurl = data.slideshare_id;
+            });
+        }
+    });
+}
+
+function slideshareurlpress() {
+    if ( $('#slideshare_url_control_group').hasClass("error") ) {
+        $('#slideshare_url_control_group').removeClass("error");
+        $('#slideshare_url').val("");
+    }
+}
+
+function showPresURL() {
+    $('#presurl').val(puburl);
+    $('#ch-qrcode-form').fadeOut('slow', function() {
+        $('#ph-qrcode-form').fadeIn('slow', function() {});
+    });
+}
+
+function pressubpress() {
+    location = puburl+'?mute=true';
+}

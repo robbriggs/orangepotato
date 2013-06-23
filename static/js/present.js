@@ -104,8 +104,10 @@ function bgLoginSuccess(easyRTCId) {
 
 function displayQR(easyRTCId) {
     selfEasyrtcid = easyRTCId;
+    var address = (location.hostname == "localhost") ? "localhost:8080" : location.hostname;
     new QRCode(document.getElementById("qrcode"), {
-        text: "http://orangepotato-davidtimms.rhcloud.com/c/"+easyRTCId,
+
+        text: address+"/c/"+easyRTCId,
         width: 256,
         height: 256,
         colorDark : "#000000",

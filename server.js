@@ -1,3 +1,4 @@
+#!/bin/env node
 /*
 Copyright (c) 2013, Priologic Software Inc.
 All rights reserved.
@@ -29,6 +30,7 @@ easyrtcCfg  = require('./config');          // All server configuration (global)
 var g       = require('./lib/general');     // General helper functions
 var c       = require('./lib/connection');  // easyRTC connection functions
 var p       = require('./lib/present');
+var os = require("os");
 
 // Ensure required modules are installed before beginning
 if (!g.moduleExists('express') || !g.moduleExists('socket.io') || !g.moduleExists('winston')) {
@@ -68,7 +70,20 @@ httpApp.configure(function() {
     }
 });
 
-createRoutes = function() {
+var connection_details = {};
+//  Set the environment variables we need.
+connection_details.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+connection_details.port = process.env.OPENSHIFT_NODEJS_PORT || 8000;
+
+if (typeof  connection_details.ipaddress === "undefined") {
+    //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
+    //  allows us to run/test the app locally.
+    console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
+     connection_details.ipaddress = '127.0.0.1';
+};
+console.log(JSON.stringify(connection_details));
+
+var createRoutes = function() {
         routes = { }; post_routes = { };
 
         // Routes for /health, /asciimo and /
@@ -81,6 +96,25 @@ createRoutes = function() {
             res.send(cache_get('index.html'));
         };
 
+        // SAMPLE USAGE: http://localhost:8000/get-slideshare-id?slideshare_url=http://www.slideshare.net/marketo/slideshare-cheat-sheet
+        routes['/get-slideshare-id*'] = function(req, res) {
+            res.setHeader('Content-Type', 'application/json');
+            if (req.query.slideshare_url) {
+                var ss = new SlideShare();
+                ss.getId(req.query.slideshare_url, function (id) {
+                    if (id) {
+                        res.send('{"slideshare_id": ' + id + '}');
+                    }
+                    else {
+                        res.send('{"error": "cannot get slideshare id"}');
+                    }
+                });
+            }
+            else {
+                res.send('{"error": "invalid slideshare URL"}');
+            }
+        };
+
         routes['/slideshare/*'] = function(req, res) {
             var slide_id = req.url.substring(12);
             var slide_page_data = '';
@@ -91,13 +125,8 @@ createRoutes = function() {
                 script_src = '';
             }
             res.setHeader('Content-Type', 'text/html');
-            var options = {
-                host: 'www.slideshare.net',
-                port: 80,
-                path: '/slideshow/embed_code/' + slide_id,
-                method: 'GET'
-            };
-            var request = http.get(options, function(slide_res) {
+            var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
+            var request = http.get(slide_url, function(slide_res) {
                 slide_res.on('data', function (chunk) {
                     slide_page_data += chunk;
                 });
@@ -109,8 +138,8 @@ createRoutes = function() {
             request.on('error', function(err) {
                 console.log(err);
                 res.status(302);
-                console.log('redirecting to http://' + req.headers.host);
-                res.setHeader('Location', 'http://' + options.host + options.path);
+                console.log('redirecting to http://' + slide_url);
+                res.setHeader('Location', 'http://' + slide_url);
                 res.end();
             });
         };
@@ -162,8 +191,12 @@ if (easyrtcCfg.sslEnable) {  // Start SSL Server (https://)
         forwardingServer.listen(easyrtcCfg.httpPort);
     }    
 } else {    // Start HTTP server (http://)
-    var server = http.createServer(httpApp).listen(easyrtcCfg.httpPort);
-    logServer.info('HTTP Server started on port: ' + easyrtcCfg.httpPort, { label: 'easyrtcServer'});
+
+    var server = http.createServer(httpApp).listen(connection_details.port, connection_details.ipaddress, function() {
+            console.log('%s: Node server started on %s:%d ...',
+                        Date(Date.now() ), connection_details.ipaddress, connection_details.port);
+        });
+    logServer.info('HTTP Server started on port: ' + connection_details.port, { label: 'easyrtcServer'});
 }
 
 
@@ -247,5 +280,32 @@ initializeServer = function() {
     };
 
 cache_get = function(key) { return fs.readFileSync(key); };
+
+var SlideShare = function () {
+    var self = this;
+}
+SlideShare.prototype.getId = function(original_url, callback) {
+    var page_data = '';
+    var request = http.get(original_url, function(slide_res) {
+        slide_res.on('data', function (chunk) {
+            page_data += chunk;
+        });
+        slide_res.on('end', function(){
+            var prefix = 'slideshow/embed_code';
+            var id = page_data.substring(page_data.indexOf(prefix) + prefix.length + 1);
+            id = id.substring(0, id.indexOf('"'));
+            callback(id);
+        });
+    });
+    request.on('error', function(err) {
+        console.log(err);
+        callback(undefined);
+    });
+};
+
+SlideShare.test = new SlideShare();
+SlideShare.test.getId('http://www.slideshare.net/ashwan/meet-the-new-slideshare-embed', function (id) {
+    console.log('SlideShare ID: ' + id);
+});
 
 initializeServer();

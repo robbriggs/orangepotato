@@ -58,7 +58,7 @@ function silentConnect() {
     console.log("Initializing.");
     easyRTC.setLoggedInListener();
     easyRTC.enableVideo(false);
-    easyRTC.enableAudio(false);
+    // easyRTC.enableAudio(false);
     easyRTC.connect("OrangePotato", bgLoginSuccess, loginFailure);
 }
 
@@ -132,7 +132,6 @@ function disconnect() {
     // disable("disconnectButton");
 }
 
-
 easyRTC.setStreamAcceptor( function(caller, stream) {
     var audio = document.getElementById('callerAudio');
     easyRTC.setVideoObjectSrc(audio,stream);
@@ -152,6 +151,9 @@ easyRTC.setAcceptChecker(function(caller, cb) {
     }
     else {
         console.log("Accept incoming call from " + caller + " ?");
+        var url = location.hostname +":"+location.port+ "/p/" + caller;
+        console.log(url);
+
     }
     var acceptTheCall = function(wasAccepted) {
         if( wasAccepted && easyRTC.getConnectionCount() > 0 ) {

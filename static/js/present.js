@@ -148,21 +148,18 @@ easyRTC.setOnStreamClosed( function (caller) {
 
 
 easyRTC.setAcceptChecker(function(caller, cb) {
-    if( easyRTC.getConnectionCount() > 0 ) {
-        console.log("Drop current call and accept new from " + caller + " ?");
-    }
-    else {
-        console.log("Accept incoming call from " + caller + " ?");
-        var url = location.hostname +":"+location.port+ "/p/" + caller;
-        console.log(url);
+    // Do not drop 
+    console.log("Accept incoming call from " + caller + " ?");
+    var url = location.hostname +":"+location.port+ "/p/" + caller;
+    console.log(url);
 
-    }
     var acceptTheCall = function(wasAccepted) {
-        if( wasAccepted && easyRTC.getConnectionCount() > 0 ) {
-            easyRTC.hangupAll();    
-        }
         cb(wasAccepted);
     }
     acceptTheCall(true);
     console.log("I accepted a call!")
 } );
+
+function createIframe(url){
+    $('container').append('<iframe src="'+url+'"></iframe>');
+}

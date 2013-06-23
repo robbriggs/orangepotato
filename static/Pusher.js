@@ -12,13 +12,16 @@ $(document).ready(function () {
 	privateChannel.bind('pusher:subscription_succeeded', function(data) { 
 		//ev_cap.moveToSlide(data.message);
 		console.log('pusher subscription succeeded');
-		pusherPush = function (number){
+		pusherPush = function (number, curr_slide){
 			if (!ev_cap.disabled_triggers && ev_cap.is_controller) {
-				privateChannel.trigger('client-move-to-slide', {"slide_number": number});
+				privateChannel.trigger('client-move-to-slide', {"desired_slide": number, "current_slide": curr_slide});
 			}
 		};
-		privateChannel.bind('client-move-to-slide', function(data) { 
-			ev_cap.moveToSlide(data.slide_number);
+		privateChannel.bind('client-move-to-slide', function(data) {
+			console.log('my slide: ' + ev_cap.current_slide_number + ', presenter slide: ' + data.current_slide);
+			if (ev_cap.current_slide_number == data.current_slide) {
+				ev_cap.moveToSlide(data.desired_slide);
+			}
 		});
 	});
 	privateChannel.bind('pusher:subscription_error', function(status) {

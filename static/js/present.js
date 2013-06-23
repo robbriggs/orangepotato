@@ -74,7 +74,7 @@ function hangup() {
 
 
 function performCall(otherEasyrtcid) {
-    easyRTC.hangupAll();
+    // easyRTC.hangupAll();
     var acceptedCB = function(accepted, caller) {
         if( !accepted ) {
             easyRTC.showError("CALL-REJECTED", "Sorry, your call to " + easyRTC.idToName(caller) + " was rejected");
@@ -136,8 +136,10 @@ function disconnect() {
 
 easyRTC.setStreamAcceptor( function(caller, stream) {
     var audio = document.getElementById('callerAudio');
-    easyRTC.setVideoObjectSrc(audio,stream);
-    enable("hangupButton");
+    if(audio){
+        easyRTC.setVideoObjectSrc(audio,stream);
+        enable("hangupButton");
+    }
 });
 
 
@@ -159,25 +161,9 @@ easyRTC.setAcceptChecker(function(caller, cb) {
         cb(wasAccepted);
     }
     acceptTheCall(true);
-    console.log("I accepted a call!")
+    console.log("I accepted a call!");
     showPresURL();
 } );
-
-$(document).ready(function () {
-    $('.alert').hide();
-    $('#ch-qrcode-form').hide();
-    $('#ph-qrcode-form').hide();
-    $('#new_present_form').submit(function (e) {
-        e.preventDefault();
-        var id = $('#slideshare_url').val();
-        id = id.substring(id.indexOf('embed_code') + 10);
-        id = id.substring(0, id.indexOf('"'));
-        window.location = '/slideshare' + id;
-    });
-
-    silentConnect();
-    console.log(selfEasyrtcid);
-});
 
 function slidesharesubpress() {
     var theyvegivenme = $('#slideshare_url').val();

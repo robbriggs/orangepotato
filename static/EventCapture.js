@@ -5,15 +5,19 @@ $(document).ready(function () {
 		this.src = $('.goToSlideLabel input')[0];
 		this.slide_buttons = ["btnFirst", "btnLast", "btnPrevious", "btnNext"];
 		this.current_slide_number = 1;
-		this.slide_count = parseInt($('.goToSlideLabel span').html().substring(1));
+		this.slide_count = 70; //parseInt($('.goToSlideLabel span').html().substring(1));
 		this.src.value = 1;
+		if	(document.getElementById('controllerID')){
+			this.is_controller = true;
+		}
+		else {
+			this.is_controller = false;
+		}
+		this.disabled_triggers = !this.is_controller;
 	};
 
 	EventCapture.prototype.addMainListener = function(){
 		var self = this;
-		if	(!document.getElementById('controllerID')){
-			this.disabled_triggers = true;
-		}
 	    //Handle button click events
 		for(var i in this.slide_buttons){
 			var but = document.getElementsByClassName(this.slide_buttons[i]);
@@ -49,6 +53,7 @@ $(document).ready(function () {
 
 	EventCapture.prototype.moveToSlide = function (slideNo) {
 		this.disabled_triggers = true;
+		this.current_slide_number = parseInt(this.src.value);
 		slideNo = parseInt(slideNo);
 		var i = this.current_slide_number;
 		console.log('slide count: ' + this.slide_count);

@@ -221,5 +221,5 @@ function showPresURL() {
 }
 
 function pressubpress() {
-    location = puburl+'?mute=true';
+    open(puburl+'?mute=true', 'target="_blank');
 }

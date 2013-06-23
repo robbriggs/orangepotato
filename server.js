@@ -30,6 +30,7 @@ easyrtcCfg  = require('./config');          // All server configuration (global)
 var g       = require('./lib/general');     // General helper functions
 var c       = require('./lib/connection');  // easyRTC connection functions
 var p       = require('./lib/present');
+var os = require("os");
 
 // Ensure required modules are installed before beginning
 if (!g.moduleExists('express') || !g.moduleExists('socket.io') || !g.moduleExists('winston')) {

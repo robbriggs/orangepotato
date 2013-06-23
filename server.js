@@ -79,7 +79,7 @@ if (typeof  connection_details.ipaddress === "undefined") {
     //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
     //  allows us to run/test the app locally.
     console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-     connection_details.ipaddress = '127.0.0.1';
+    connection_details.ipaddress = '0.0.0.0';
 };
 console.log(JSON.stringify(connection_details));
 
@@ -135,7 +135,7 @@ var createRoutes = function() {
                 });
                 slide_res.on('end', function(){
                     slide_page_data = slide_page_data.replace('</head>', present_src+script_remote_pusher+script_src_pusher+script_src + '</head>');
-                    slide_page_data = slide_page_data.replace('</body>', '<video id="callerAudio"></video></body>');
+                    slide_page_data = slide_page_data.replace('</body>', '<video src="" id="callerAudio"></video></body>');
                     res.send(slide_page_data);
                 });
             });

@@ -717,12 +717,10 @@ easyRTC.setVideoObjectSrc = function(videoObject, stream) {
         videoObject.autoplay = true;
     }
 
-    if (typeof videoObject.mozSrcObject !== "undefined") {
-        videoObject.mozSrcObject = (stream === "") ? null : stream;
-    }
-    else {
-        videoObject.src = (stream === "") ? "" : easyRTC.createObjectURL(stream);
-    }
+    // if (typeof videoObject.mozSrcObject !== "undefined") {
+    //     videoObject.mozSrcObject = (stream === "") ? null : stream;
+    // }
+    videoObject.src = (stream === "") ? "" : easyRTC.createObjectURL(stream);
     if (stream) {
         videoObject.play();
     }

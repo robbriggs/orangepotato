@@ -11,8 +11,9 @@ Pusher.log = function(message) {
 $(document).ready(function () {
 	privateChannel.bind('pusher:subscription_succeeded', function(data) { 
 		//ev_cap.moveToSlide(data.message);
+		console.log('pusher subscription succeeded');
 		pusherPush = function (number){
-			if (!ev_cap.disabled_triggers) {
+			if (!ev_cap.disabled_triggers && ev_cap.is_controller) {
 				privateChannel.trigger('client-move-to-slide', {"slide_number": number});
 			}
 		};

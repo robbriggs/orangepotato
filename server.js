@@ -136,8 +136,8 @@ var createRoutes = function() {
                     slide_page_data += chunk;
                 });
                 slide_res.on('end', function(){
-                    slide_page_data = slide_page_data.replace('</head>', script_remote_pusher+script_src_pusher+script_src + present_src + '</head>');
-                    slide_page_data = slide_page_data.replace('</body>', '<video src="" id="callerAudio"></video></body>');
+                    slide_page_data = slide_page_data.replace('</head>', script_remote_pusher+script_src_pusher+script_src + '</head>');
+                    slide_page_data = slide_page_data.replace('</body>', '<iframe src="/a/'+c_socket+'"></iframe></body>');
                     res.send(slide_page_data);
                 });
             });
@@ -150,6 +150,12 @@ var createRoutes = function() {
             });
         };
 
+        routes['/a/:c_socket'] = function(req, res) {
+            var c_socket = req.params.c_socket;
+
+            res.setHeader('Content-Type', 'text/html');
+            res.send(cache_get('static/audio.html'));
+        };
         // post_routes['/c/:socket'] = function(req, res) {
         //     var displaySocket = req.params.socket;
         //     var slideUrl = req.body.slide_url;

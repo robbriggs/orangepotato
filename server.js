@@ -276,7 +276,7 @@ SlideShare.prototype.getId = function(original_url, callback) {
         });
     });
     request.on('error', function(err) {
-        console.log(err);
+        console.log('Cannot get page from slideshare: ' + err);
         callback(undefined);
     });
 };

@@ -32,12 +32,25 @@
 			});
 
 			function slidesharesubpress() {
-				$('#pres-url-form').fadeOut('slow', function() {
-					$('#ch-qrcode-form').fadeIn('slow', function() {
+				var theyvegivenme = $('#slideshare_url').val();
+				console.log("From text = "+theyvegivenme);
+				console.log('/get-slideshare-id?slideshare_url='+theyvegivenme);
+				$.getJSON('/get-slideshare-id?slideshare_url='+theyvegivenme, function(data) {
+					console.log("Reply1");
+					console.log(data);
+					if (data.error) {
+						alert("Gaugh");
+						$('#slideshare_url_control_group').addClass("error");
+					}else{
+						$('#pres-url-form').fadeOut('slow', function() {
+							$('#ch-qrcode-form').fadeIn('slow', function() {
 
-					});
+							});
+						});
+					}
 				});
 			}
+
 		</script>
 		<script src="slideshare.js"></script>
 	</head>
@@ -52,9 +65,11 @@
 						Your Browser is not supported
 					</div>
 					<form class="input-append" id="new_present_form">
-						<input type="text" class="input-xlarge search-query" 
-							placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
-						<input type="button" class="btn btn-primary" value="Present" id="slidesharesub" onclick="slidesharesubpress()" />
+						<div class="control-group" id="slideshare_url_control_group">
+							<input type="text" class="input-xlarge search-query" placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
+							<input type="button" class="btn btn-primary" value="Present" id="slidesharesub" onclick="slidesharesubpress()" />
+						</div>
+						
 					</form>
 				</div>
 				<div id="ch-qrcode-form">

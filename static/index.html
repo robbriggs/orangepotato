@@ -28,16 +28,38 @@
 				});
 
 				silentConnect();
+				console.log(selfEasyrtcid);
 			});
 
-			function slidesharesubpress() {
-				$('#pres-url-form').fadeOut('slow', function() {
-					$('#ch-qrcode-form').fadeIn('slow', function() {
+			var slide
 
-					});
+			function slidesharesubpress() {
+				var theyvegivenme = $('#slideshare_url').val();
+				
+				if (theyvegivenme == "")
+					theyvegivenme = '/ashwan/meet-the-new-slideshare-embed';
+
+				$.getJSON('/get-slideshare-id?slideshare_url='+theyvegivenme, function(data) {
+					if (data.error) {
+						$('#slideshare_url_control_group').addClass("error");
+						$('#slideshare_url').val("Invalid url, try again");
+					}else{
+						$('#pres-url-form').fadeOut('slow', function() {
+							$('#ch-qrcode-form').fadeIn('slow', function() {});
+						});
+					}
 				});
 			}
+
+			function slideshareurlpress() {
+				if ( $('#slideshare_url_control_group').hasClass("error") ) {
+					$('#slideshare_url_control_group').removeClass("error");
+					$('#slideshare_url').val("");
+				}
+			}
+
 		</script>
+		<script src="slideshare.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -50,13 +72,17 @@
 						Your Browser is not supported
 					</div>
 					<form class="input-append" id="new_present_form">
-						<input type="text" class="input-xlarge search-query" 
-							placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" />
-						<input type="button" class="btn btn-primary" value="Present" id="slidesharesub" onclick="slidesharesubpress()" />
+						<div class="control-group" id="slideshare_url_control_group">
+							<input type="text" class="input-xlarge search-query" placeholder="Paste a Slideshare embed code here" id="slideshare_url" name="slideshare_url" onclick="slideshareurlpress()"/>
+							<input type="button" class="btn btn-primary" value="Present" id="slidesharesub" onclick="slidesharesubpress()" />
+						</div>
+						
 					</form>
 				</div>
 				<div id="ch-qrcode-form">
-					<div id="qrcode" class="center-bg"></div>
+					<a id="ch-qrcode-a" target="_blank">
+						<div id="qrcode" class="center-bg"></div>
+					</a>
 					<h1>Scan This</h1>
 					<p>With your mobile phone</p>
 				</div>
@@ -65,16 +91,10 @@
 
     <div id="demoContainer">
         <div id="connectControls">
-            <div id="qrcode"></div>
-            <br />
             <strong>Connected users:</strong>
             <div id="otherClients"></div>
 
         </div>
-        <div id="videos"> 
-		      <video id="callerAudio"></video>
-		    </div>
-
     </div>
 
 	</body>

@@ -33,26 +33,28 @@ $(document).ready(function () {
 
 		//Handle arrow keys events
 		document.onkeyup = function(e){
-			if(e.keyCode == 91){
-				selft.current_slide_number-=1;
-				pusherPush(self.current_slide_number);
-			}
-			else if(e.keyCode == 92){
-				selft.current_slide_number+=1;
-				pusherPush(self.current_slide_number);
-			}
+				if(e.keyCode == 91){
+					selft.current_slide_number-=1;
+					pusherPush(self.current_slide_number);
+				}
+				else if(e.keyCode == 92){
+					selft.current_slide_number+=1;
+					pusherPush(self.current_slide_number);
+				}
 		};
 	};
 
 	EventCapture.prototype.moveToSlide = function (slideNo) {
-		var e = jQuery.Event("keydown");
-		e.which = 13; // Enter
+		this.disabled_triggers = true;
+		//var e = jQuery.Event("keydown");
+		//e.which = 13; // Enter
 		//$('.goToSlideLabel input').val(slideNo).trigger(e);
 		$(".btnFirst").click();
 		for (var i = 1; i < slideNo; i += 1) {
 			console.log("clicking next");
 			$(".btnNext").click();
 		};
+		this.disabled_triggers = false;
 	};
 
 	EventCapture.prototype.inRange = function (slide_no) {

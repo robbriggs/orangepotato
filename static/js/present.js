@@ -107,16 +107,18 @@ function bgLoginSuccess(easyRTCId) {
 function displayQR(easyRTCId) {
     if(typeof(QRCode) == "undefined"){ return; }
     selfEasyrtcid = easyRTCId;
-    var address = (location.hostname == "localhost") ? "localhost:8080" : location.hostname;
+    var domain = (location.hostname == "localhost") ? "localhost:8000" : location.hostname;
+    var address = 'http://'+domain+"/c/"+easyRTCId
     new QRCode(document.getElementById("qrcode"), {
 
-        text: address+"/c/"+easyRTCId,
+        text: address,
         width: 256,
         height: 256,
         colorDark : "#000000",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.L
     });
+    $('#ch-qrcode-a').attr("href",address);
 }
 
 function loginFailure(message) {

@@ -9,18 +9,30 @@
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
 
     <!-- Loading Flat UI -->
-    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="/css/flat-ui.css" rel="stylesheet">
     
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="Pusher.js"></script>
-    <script type="text/javascript" src="EventCapture.js"></script>
+    <script type="text/javascript" src="/Pusher.js"></script>
+    <script type="text/javascript" src="/EventCapture.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../js/easyrtc.js"></script>
+    <script type="text/javascript" src="/js/present.js"></script>
   </head>
   <body>
+    <script>
+      $(document).ready(function () {
+        silentConnect();
+
+        var href = window.location.href;
+        var p_socket = href.substr(href.lastIndexOf('/') + 1);
+        performCall(p_socket);
+      });
+    </script>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span4">

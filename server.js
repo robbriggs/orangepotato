@@ -87,7 +87,7 @@ if (typeof  connection_details.ipaddress === "undefined") {
 console.log(JSON.stringify(connection_details));
 
 var createRoutes = function() {
-        routes = { };
+        routes = { }; post_routes = { };
 
         // Routes for /health, /asciimo and /
         routes['/health'] = function(req, res) {
@@ -146,6 +146,30 @@ var createRoutes = function() {
                 res.end();
             });
         };
+
+        // post_routes['/c/:socket'] = function(req, res) {
+        //     var displaySocket = req.params.socket;
+        //     var slideUrl = req.body.slide_url;
+        //     res.status(302);
+        //     console.log('redirecting to http://' + req.headers.host);
+        //     res.setHeader('Location', 'http://' + options.host + options.path);
+        // };
+
+        routes['/c/:p_socket'] = function(req, res) {
+            var p_socket = req.params.p_socket;
+            res.setHeader('Content-Type', 'text/html');
+            res.status(200);
+            res.send(cache_get('static/controller.html'));
+        };
+
+        routes['/p/:c_socket'] = function(req, res) {
+            var c_socket = req.params.c_socket;
+            res.setHeader('Content-Type', 'application/javascript');
+            res.status(200);
+            res.send(cache_get('presenter_handshake.js'));
+        };
+
+
     };
 
 // Start either the HTTP or HTTPS web service
@@ -242,13 +266,18 @@ initializeServer = function() {
         createRoutes();
         app = httpApp ;
         app.configure(function() {
-                app.use('/demos', express.static(__dirname+'/demos'));
-                app.use(express.static(__dirname + '/static/'));
+            app.use(express.bodyParser());
+            app.use('/demos', express.static(__dirname+'/demos'));
+            app.use(express.static(__dirname + '/static/'));
         });
 
         //  Add handlers for the app (from the routes).
         for (var r in routes) {
             app.get(r, routes[r]);
+            console.log(r);
+        }
+        for (var r in post_routes) {
+            app.post(r, post_routes[r]);
             console.log(r);
         }
     };
@@ -261,7 +290,14 @@ var SlideShare = function () {
 
 SlideShare.prototype.getId = function(original_url, callback) {
     var page_data = '';
-    var request = http.get(original_url, function(slide_res) {
+    var options = {
+      hostname: 'www.slideshare.net',
+      port: 80,
+      path: original_url,
+      method: 'GET'
+    };
+    var request = http.get(options, function(slide_res) {
+        slide_res.setEncoding('utf8');
         slide_res.on('data', function (chunk) {
             page_data += chunk;
         });
@@ -279,7 +315,7 @@ SlideShare.prototype.getId = function(original_url, callback) {
 };
 
 SlideShare.test = new SlideShare();
-SlideShare.test.getId('http://www.slideshare.net/ashwan/meet-the-new-slideshare-embed', function (id) {
+SlideShare.test.getId('/ashwan/meet-the-new-slideshare-embed', function (id) {
     console.log('SlideShare ID: ' + id);
 });
 

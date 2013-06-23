@@ -203,6 +203,10 @@ function pressubpress() {
     open(puburl);
 }
 
+function twitterclick() {
+    open('https://twitter.com/intent/tweet?text=Streaming todays presentation '+puburl+'&hashtags=EE4G,');
+}
+
 function createIframe(url){
     $('container').append('<iframe src="'+url+'"></iframe>');
 }

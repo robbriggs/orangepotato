@@ -35,8 +35,10 @@
 
 			function slidesharesubpress() {
 				var theyvegivenme = $('#slideshare_url').val();
-				console.log("From text = "+theyvegivenme);
-				console.log('/get-slideshare-id?slideshare_url='+theyvegivenme);
+				
+				if (theyvegivenme == "")
+					theyvegivenme = '/ashwan/meet-the-new-slideshare-embed';
+
 				$.getJSON('/get-slideshare-id?slideshare_url='+theyvegivenme, function(data) {
 					if (data.error) {
 						$('#slideshare_url_control_group').addClass("error");

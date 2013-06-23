@@ -298,18 +298,21 @@ SlideShare.prototype.getId = function(original_url, callback) {
     };
     var request = http.get(options, function(slide_res) {
         slide_res.setEncoding('utf8');
+        var id;
         slide_res.on('data', function (chunk) {
             page_data += chunk;
         });
         slide_res.on('end', function(){
             var prefix = 'slideshow/embed_code';
-            var id = page_data.substring(page_data.indexOf(prefix) + prefix.length + 1);
-            id = id.substring(0, id.indexOf('"'));
+            if (page_data.indexOf(prefix)>0) {
+                id = page_data.substring(page_data.indexOf(prefix) + prefix.length + 1);
+                id = id.substring(0, id.indexOf('"'));
+            }
             callback(id);
         });
     });
     request.on('error', function(err) {
-        console.log(err);
+        console.log('Cannot get page from slideshare: ' + err);
         callback(undefined);
     });
 };

@@ -10,13 +10,29 @@
 		<script src="js/qrcode.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="../js/easyrtc.js"></script>
-    <script type="text/javascript" src="js/present.js"></script>
+    <script type="text/javascript" src="/js/easyrtc.js"></script>
+    <script type="text/javascript" src="/js/present.js"></script>
 
     <link href="css/style.css" rel="stylesheet">
-		<script src="slideshare.js"></script>
 	</head>
 	<body>
+		<script>
+		$(document).ready(function () {
+		    $('.alert').hide();
+		    $('#ch-qrcode-form').hide();
+		    $('#ph-qrcode-form').hide();
+		    $('#new_present_form').submit(function (e) {
+		        e.preventDefault();
+		        var id = $('#slideshare_url').val();
+		        id = id.substring(id.indexOf('embed_code') + 10);
+		        id = id.substring(0, id.indexOf('"'));
+		        window.location = '/slideshare' + id;
+		    });
+
+		    silentConnect();
+		    console.log(selfEasyrtcid);
+		});
+		</script>
 		<div class="container">
 			<div class="hero-unit">
 				<div id="pres-url-form">

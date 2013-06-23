@@ -95,6 +95,25 @@ var createRoutes = function() {
             res.send(cache_get('index.html'));
         };
 
+        // SAMPLE USAGE: http://localhost:8000/get-slideshare-id?slideshare_url=http://www.slideshare.net/marketo/slideshare-cheat-sheet
+        routes['/get-slideshare-id*'] = function(req, res) {
+            res.setHeader('Content-Type', 'application/json');
+            if (req.query.slideshare_url) {
+                var ss = new SlideShare();
+                ss.getId(req.query.slideshare_url, function (id) {
+                    if (id) {
+                        res.send('{"slideshare_id": ' + id + '}');
+                    }
+                    else {
+                        res.send('{"error": "cannot get slideshare id"}');
+                    }
+                });
+            }
+            else {
+                res.send('{"error": "invalid slideshare URL"}');
+            }
+        };
+
         routes['/slideshare/*'] = function(req, res) {
             var slide_id = req.url.substring(12);
             var slide_page_data = '';

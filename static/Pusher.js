@@ -19,6 +19,7 @@ $(document).ready(function () {
 		};
 		privateChannel.bind('client-move-to-slide', function(data) {
 			console.log('my slide: ' + ev_cap.current_slide_number + ', presenter slide: ' + data.current_slide);
+			ev_cap.setPresenterSlide(data.desired_slide);
 			if (ev_cap.current_slide_number == data.current_slide) {
 				ev_cap.moveToSlide(data.desired_slide);
 			}

@@ -32,6 +32,7 @@ var c       = require('./lib/connection');  // easyRTC connection functions
 var p       = require('./lib/present');
 var os = require("os");
 
+
 // Ensure required modules are installed before beginning
 if (!g.moduleExists('express') || !g.moduleExists('socket.io') || !g.moduleExists('winston')) {
     console.log('Error: Required modules are not installed. Run \'npm install\' from command line.');
@@ -46,7 +47,6 @@ var express = require('express');           // web framework external module
 var sio     = require('socket.io');         // web socket external module
 var winston = require('winston');           // logging module
 var Pusher = require('pusher');
-
 
 // Logging Setup
 g.logInit();                                // Initialize logging settings

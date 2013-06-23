@@ -1,12 +1,32 @@
 var EventCapture;
 var ev_cap;
 $(document).ready(function () {
+
 	EventCapture = function () {
 		this.src = $('.goToSlideLabel input')[0];
 		this.slide_buttons = ["btnFirst", "btnLast", "btnPrevious", "btnNext"];
 		this.current_slide_number = 1;
 		this.slide_count = 70; //parseInt($('.goToSlideLabel span').html().substring(1));
 		this.src.value = 1;
+		this.presenter_slide = 1;
+		this.presenter_box = $('<a>Presenter: 1</a>').addClass('presenter_box')
+							.css({	position: 'absolute',
+									top: '15px', 
+									left: '15px', 
+									'z-index': '100', 
+									backgroundColor: 'rgba(255,255,255,0.75)', 
+									color: 'black',
+									borderRadius: '3px',
+									padding: '5px 10px',
+									fontSize: '120%',
+									cursor: 'pointer',
+									display: 'block',
+									width: '100px',
+									textAlign: 'center'});
+		this.presenter_box.click(function () {
+			ev_cap.moveToSlide(ev_cap.presenter_slide);
+		});
+		$('body').append(this.presenter_box);
 		if	(document.getElementById('controllerID')){
 			this.is_controller = true;
 		}
@@ -16,7 +36,19 @@ $(document).ready(function () {
 		this.disabled_triggers = !this.is_controller;
 	};
 
-	EventCapture.prototype.addMainListener = function(){
+	EventCapture.prototype.setPresenterSlide = function (slide) {
+		var ec = this;
+		setTimeout(function () {
+			ec.presenter_slide = slide;
+			var rejoin = '';
+			if (slide != ec.current_slide_number) {
+				rejoin = '<br />click here to rejoin';
+			}
+			ec.presenter_box.html('Presenter: ' + slide + rejoin);
+		}, 80);
+	};
+
+	EventCapture.prototype.addMainListener = function () {
 		var self = this;
 	    //Handle button click events
 		for(var i in this.slide_buttons){

@@ -11,6 +11,9 @@ $(document).ready(function () {
 
 	EventCapture.prototype.addMainListener = function(){
 		var self = this;
+		if	(!document.getElementById('controllerID')){
+			this.disabled_triggers = true;
+		}
 	    //Handle button click events
 		for(var i in this.slide_buttons){
 			var but = document.getElementsByClassName(this.slide_buttons[i]);
@@ -45,7 +48,7 @@ $(document).ready(function () {
 	};
 
 	EventCapture.prototype.moveToSlide = function (slideNo) {
-		this.disabled_triggers = true;
+		//this.disabled_triggers = true;
 		//var e = jQuery.Event("keydown");
 		//e.which = 13; // Enter
 		//$('.goToSlideLabel input').val(slideNo).trigger(e);
@@ -54,7 +57,7 @@ $(document).ready(function () {
 			console.log("clicking next");
 			$(".btnNext").click();
 		};
-		this.disabled_triggers = false;
+		//this.disabled_triggers = false;
 	};
 
 	EventCapture.prototype.inRange = function (slide_no) {

@@ -124,13 +124,7 @@ var createRoutes = function() {
             //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
             var script_src = '<script>' + cache_get('static/EventCapture.js') +  '</script>';
             var script_src_pusher = '<script>' + cache_get('static/Pusher.js') +  '</script>';
-            var script_remote_pusher =  "<script src=/"http://js.pusher.com/2.1/pusher.min.js/" type=/"text/javascript/"></script>";
-            if (!script_src) {
-                script_src = '';
-            }
-            if (!script_src_pusher) {
-                script_src_pusher = '';
-            }
+            //var script_remote_pusher =  "<script src=/"http://js.pusher.com/2.1/pusher.min.js/" type=/"text/javascript/"></script>";
             res.setHeader('Content-Type', 'text/html');
             var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
             var request = http.get(slide_url, function(slide_res) {

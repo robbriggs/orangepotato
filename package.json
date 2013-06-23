@@ -23,7 +23,8 @@
   "dependencies": {
     "express" : "3.2.x",
     "socket.io" : "0.9.x",
-    "winston" : "0.7.x"
+    "winston" : "0.7.x",
+    "pusher" : "0.1.x"
   },
   "devDependencies": {},
   "bundleDependencies": [],

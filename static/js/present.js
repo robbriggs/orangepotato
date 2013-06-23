@@ -108,7 +108,7 @@ function displayQR(easyRTCId) {
     if(typeof(QRCode) == "undefined"){ return; }
     selfEasyrtcid = easyRTCId;
     var domain = (location.hostname == "localhost") ? "localhost:8000" : location.hostname;
-    var address = 'http://'+domain+"/c/"+easyRTCId
+    var address = 'http://'+location.hostname+':'+location.port+"/c/"+easyRTCId
     new QRCode(document.getElementById("qrcode"), {
 
         text: address,

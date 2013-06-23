@@ -5,7 +5,7 @@ $(document).ready(function () {
 		this.src = $('.goToSlideLabel input')[0];
 		this.slide_buttons = ["btnFirst", "btnLast", "btnPrevious", "btnNext"];
 		this.current_slide_number = 1;
-		this.slide_count = parseInt($('.goToSlideLabel span').html().substring(1));
+		this.slide_count = 70; //parseInt($('.goToSlideLabel span').html().substring(1));
 		this.src.value = 1;
 	};
 

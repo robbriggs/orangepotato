@@ -118,19 +118,18 @@ var createRoutes = function() {
             }
         };
 
-        routes['/slideshare/*'] = function(req, res) {
-            var slide_id = req.url.substring(12);
+        routes['/p/:c_socket/:slide_id'] = function(req, res) {
+            var slide_id = req.params.slide_id;
+            var c_socket = req.params.c_socket;
             var slide_page_data = '';
             //var script_src = '<script> $(document).ready(function () { $(".btnNext").click(function () { alert("event captured"); }); }); </script>';
+            var present_src = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>' +
+                '<script src="/socket.io/socket.io.js"></script><script type="text/javascript" src="/js/easyrtc.js"></script>' +
+                '<script type="text/javascript" src="/js/present.js"></script>' + 
+                '<script>' + cache_get('static/js/display-present.js') +  '</script>';
             var script_src = '<script>' + cache_get('static/EventCapture.js') +  '</script>';
+            var script_remote_pusher =  '<script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>';
             var script_src_pusher = '<script>' + cache_get('static/Pusher.js') +  '</script>';
-            var script_remote_pusher =  "<script src=/"http://js.pusher.com/2.1/pusher.min.js/" type=/"text/javascript/"></script>";
-            if (!script_src) {
-                script_src = '';
-            }
-            if (!script_src_pusher) {
-                script_src_pusher = '';
-            }
             res.setHeader('Content-Type', 'text/html');
             var slide_url = 'http://www.slideshare.net/slideshow/embed_code/' + slide_id;
             var request = http.get(slide_url, function(slide_res) {
@@ -138,7 +137,8 @@ var createRoutes = function() {
                     slide_page_data += chunk;
                 });
                 slide_res.on('end', function(){
-                    slide_page_data = slide_page_data.replace('</head>', script_remote_pusher+script_src_pusher+script_src + '</head>');
+                    slide_page_data = slide_page_data.replace('</head>', present_src+script_remote_pusher+script_src_pusher+script_src + '</head>');
+                    slide_page_data = slide_page_data.replace('</body>', '<video id="callerAudio"></video></body>');
                     res.send(slide_page_data);
                 });
             });
@@ -165,14 +165,6 @@ var createRoutes = function() {
             res.status(200);
             res.send(cache_get('static/controller.html'));
         };
-
-        routes['/p/:c_socket'] = function(req, res) {
-            var c_socket = req.params.c_socket;
-            res.setHeader('Content-Type', 'application/javascript');
-            res.status(200);
-            res.send(cache_get('presenter_handshake.js'));
-        };
-
 
     };
 
